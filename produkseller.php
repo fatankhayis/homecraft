@@ -1,15 +1,33 @@
 <?php
-require 'db_connection.php'; // File koneksi database
+require 'db_connection.php';
+session_start();
 
-// Ambil semua produk dari database
-$sql = "SELECT * FROM items";
-$result = $conn->query($sql);
+// Pastikan user login
+if (!isset($_SESSION['seller_id'])) {
+    header("Location: indexseller.php");
+    exit;
+}
+
+// Ambil ID seller dari sesi
+$seller_id = $_SESSION['seller_id'];
+
+// Ambil produk yang sesuai dengan seller yang login
+$sql = "SELECT items.* FROM items 
+        INNER JOIN users ON items.seller_id = users.id 
+        WHERE users.id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $_SESSION['seller_id']);
+$stmt->execute();
+$result = $stmt->get_result();
+
 
 // Fungsi untuk menghapus produk
 if (isset($_GET['delete_id'])) {
     $delete_id = $_GET['delete_id'];
-    $delete_sql = "DELETE FROM items WHERE id = '$delete_id'";
-    if ($conn->query($delete_sql) === TRUE) {
+    $delete_sql = "DELETE FROM items WHERE id = ? AND seller_id = ?";
+    $delete_stmt = $conn->prepare($delete_sql);
+    $delete_stmt->bind_param("ss", $delete_id, $seller_id);
+    if ($delete_stmt->execute()) {
         header("Location: produkseller.php");
         exit;
     } else {
@@ -17,6 +35,7 @@ if (isset($_GET['delete_id'])) {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

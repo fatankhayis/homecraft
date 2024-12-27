@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 // Koneksi ke database
 $servername = "localhost";
 $username = "root";
@@ -31,6 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Cek apakah username ditemukan
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
+        
+    $_SESSION['seller_id'] = $user['id'];
         
         // Verifikasi password
         if (password_verify($password, $user['password'])) {

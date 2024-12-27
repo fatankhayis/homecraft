@@ -1,81 +1,32 @@
 <?php
-// Koneksi ke database
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "homecraft";
+require 'db_connection.php';
+session_start();
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Periksa koneksi
-if ($conn->connect_error) {
-    die("Koneksi gagal: " . $conn->connect_error);
+if (!isset($_SESSION['seller_id'])) {
+    header("Location: login.php");
+    exit;
 }
 
-// Proses formulir saat disubmit
-$message = ""; // Variabel untuk menyimpan pesan alert
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
-    $description = $_POST['description'];
-    $rating = $_POST['rating'];
-    $location = $_POST['location'];
     $price = $_POST['price'];
     $stock = $_POST['stock'];
-    $added_by = $_POST['added_by'];
+    $image = $_POST['image']; // Ganti dengan mekanisme upload file jika diperlukan
+    $seller_id = $_SESSION['seller_id'];
 
-    // Proses upload gambar
-    $target_dir = "foto_produk/";
-    $image_name = basename($_FILES["image"]["name"]);
-    $target_file = $target_dir . $image_name;
-    $upload_ok = 1;
-    $image_file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    // Query untuk menyimpan produk
+    $stmt = $conn->prepare("INSERT INTO items (name, price, stock, image, seller_id) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sdisi", $name, $price, $stock, $image, $seller_id);
 
-    // Validasi file gambar
-    if (isset($_FILES["image"])) {
-        $check = getimagesize($_FILES["image"]["tmp_name"]);
-        if ($check === false) {
-            $message = "File bukan gambar.";
-            $upload_ok = 0;
-        }
-    }
-
-    // Periksa ukuran file
-    if ($_FILES["image"]["size"] > 500000) { // 500 KB
-        $message = "Ukuran file terlalu besar.";
-        $upload_ok = 0;
-    }
-
-    // Periksa format file
-    $allowed_types = ["jpg", "jpeg", "png", "gif"];
-    if (!in_array($image_file_type, $allowed_types)) {
-        $message = "Hanya file JPG, JPEG, PNG, dan GIF yang diperbolehkan.";
-        $upload_ok = 0;
-    }
-
-    // Jika validasi berhasil, pindahkan file ke server
-    if ($upload_ok == 1) {
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-            // Simpan data ke database
-            $sql = "INSERT INTO items (name, description, image, rating, location, price, stock, added_by) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sssdsisi", $name, $description, $image_name, $rating, $location, $price, $stock, $added_by);
-
-            if ($stmt->execute()) {
-                $message = "Produk berhasil ditambahkan!";
-            } else {
-                $message = "Error: " . $stmt->error;
-            }
-
-            $stmt->close();
-        } else {
-            $message = "Gagal mengunggah gambar.";
-        }
+    if ($stmt->execute()) {
+        header("Location: produkseller.php");
+        exit;
+    } else {
+        echo "Error: " . $stmt->error;
     }
 }
-
-$conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
