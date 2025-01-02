@@ -55,6 +55,9 @@ $total_price = $calculated_totals['total_price'];
 $shipping_cost = $calculated_totals['shipping_cost'];
 $total_amount = $calculated_totals['total_amount'];
 
+// Simpan total_amount dalam session
+$_SESSION['total_amount'] = $total_amount;
+
 // Ambil data barang dari keranjang
 $query_cart = "
     SELECT cart.*, items.name, items.price, items.image
@@ -94,6 +97,11 @@ $result_cart = $conn->query($query_cart);
           $("#total_price").text("Rp " + totalPrice.toLocaleString());
           $("#shipping_cost").text("Rp " + shippingCost.toLocaleString());
           $("#total_amount").text("Rp " + totalAmount.toLocaleString());
+
+          // Simpan total_amount ke sesi menggunakan AJAX
+          $.post("update_total.php", { total_amount: totalAmount }, function(response) {
+            console.log(response);
+          });
         }
 
         $(".quantity").on("change", function() {
@@ -150,21 +158,24 @@ $result_cart = $conn->query($query_cart);
 
       <!-- Daftar Barang di Keranjang -->
       <section class="bg-white p-4 rounded-lg shadow mb-4">
-        <?php while ($item = $result_cart->fetch_assoc()) { ?>
+        <?php while ($item = $result_cart->fetch_assoc()) { 
+            $image_path = 'assets/' . htmlspecialchars($item['image']);
+        ?>
         <div class="cart-item flex justify-between items-center mb-4" data-item-price="<?php echo $item['price']; ?>">
-          <div class="flex items-center">
-            <img alt="Product Image" class="w-20 h-20 rounded-lg mr-4" src="<?php echo $item['image']; ?>" />
-            <div>
-              <h4 class="font-bold"><?php echo $item['name']; ?></h4>
-              <p>Rp <?php echo number_format($item['price'], 0, ',', '.'); ?></p>
+            <div class="flex items-center">
+                <img alt="Product Image" class="w-20 h-20 rounded-lg mr-4" src="<?php echo $image_path; ?>" />
+                <div>
+                    <h4 class="font-bold"><?php echo htmlspecialchars($item['name']); ?></h4>
+                    <p>Rp <?php echo number_format($item['price'], 0, ',', '.'); ?></p>
+                </div>
             </div>
-          </div>
-          <div class="flex items-center">
-            <input class="quantity w-12 text-center border mx-2" type="number" value="<?php echo $item['quantity']; ?>" min="1" />
-            <p class="item-total text-red-500 ml-4" data-item-total="<?php echo $item['price'] * $item['quantity']; ?>">
-              Rp <?php echo number_format($item['price'] * $item['quantity'], 0, ',', '.'); ?>
-            </p>
-          </div>
+            <div class="flex items-center">
+                <!-- Kuantitas Barang Tetap -->
+                <p class="quantity font-medium">Jumlah: <?php echo $item['quantity']; ?></p>
+                <p class="item-total text-red-500 ml-4" data-item-total="<?php echo $item['price'] * $item['quantity']; ?>">
+                    Rp <?php echo number_format($item['price'] * $item['quantity'], 0, ',', '.'); ?>
+                </p>
+            </div>
         </div>
         <?php } ?>
       </section>
@@ -181,26 +192,26 @@ $result_cart = $conn->query($query_cart);
 
       <!-- Ringkasan Belanja -->
       <section class="bg-white p-4 rounded-lg shadow">
-    <h3 class="font-bold mb-2">Ringkasan Belanja</h3>
-    <div class="flex justify-between mb-2">
-        <p>Total Belanja</p>
-        <p id="total_price">Rp <?php echo number_format($total_price, 0, ',', '.'); ?></p>
-    </div>
-    <div class="flex justify-between mb-2">
-        <p>Ongkos Kirim</p>
-        <p id="shipping_cost">Rp <?php echo number_format($shipping_cost, 0, ',', '.'); ?></p>
-    </div>
-    <div class="flex justify-between font-bold mb-4">
-        <p>Total Tagihan</p>
-        <p id="total_amount">Rp <?php echo number_format($total_amount, 0, ',', '.'); ?></p>
-    </div>
-    <form action="metodepembayaran.php" method="POST">
-        <button type="submit" class="w-full bg-amber-800 text-white font-bold py-2 rounded-lg hover:bg-amber-700">
-            Bayar Sekarang
-        </button>
-    </form>
-</section>
-
+        <h3 class="font-bold mb-2">Ringkasan Belanja</h3>
+        <div class="flex justify-between mb-2">
+            <p>Total Belanja</p>
+            <p id="total_price">Rp <?php echo number_format($total_price, 0, ',', '.'); ?></p>
+        </div>
+        <div class="flex justify-between mb-2">
+            <p>Ongkos Kirim</p>
+            <p id="shipping_cost">Rp <?php echo number_format($shipping_cost, 0, ',', '.'); ?></p>
+        </div>
+        <div class="flex justify-between font-bold mb-4">
+            <p>Total Tagihan</p>
+            <p id="total_amount">Rp <?php echo number_format($total_amount, 0, ',', '.'); ?></p>
+        </div>
+        <form action="metodepembayaran.php" method="POST">
+            <button type="submit" class="w-full bg-amber-800 text-white font-bold py-2 rounded-lg hover:bg-amber-700">
+                Bayar Sekarang
+            </button>
+            <input type="hidden" name="total_amount" value="<?php echo $total_amount; ?>" />
+        </form>
+      </section>
     </main>
   </body>
 </html>

@@ -1,86 +1,88 @@
+<?php
+session_start();
+$total_amount = $_SESSION['total_amount'] ?? 0; // Ambil nilai total_amount dari session
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Metode Pembayaran</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <style>
-        /* Styling sama seperti sebelumnya */
-        body { font-family: Arial, sans-serif; background-color: #fff; margin: 0; padding: 0; }
-        .header { background-color: #b87333; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
-        .header .logo { font-size: 24px; font-weight: bold; color: #fff; }
-        .header .search-bar { display: flex; align-items: center; flex-grow: 1; margin: 0 20px; }
-        .header .search-bar input { flex-grow: 1; padding: 5px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; }
-        .header .search-bar button { background: none; border: none; cursor: pointer; margin-left: 5px; }
-        .header .profile { display: flex; align-items: center; }
-        .header .profile img { border-radius: 50%; width: 40px; height: 40px; margin-right: 10px; }
-        .header .profile span { color: #fff; }
-        .container { padding: 20px; }
-        .payment-method { border: 1px solid #000; padding: 20px; border-radius: 4px; }
-        .payment-option { margin-bottom: 20px; }
-        .bank-list { list-style: none; padding: 0; margin: 0; display: none; }
-        .bank-list li { display: flex; align-items: center; margin-bottom: 10px; cursor: pointer; }
-        .bank-list li img { width: 50px; height: auto; margin-right: 10px; border-radius: 4px; }
-        .confirm-button { background-color: #b87333; color: #fff; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; width: 100%; text-align: center; margin-top: 20px; }
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
     </style>
 </head>
-<body>
-    <div class="header">
-        <div class="logo">HOMECRAFT</div>
-        <div class="search-bar">
-            <input type="text" placeholder="Pencarian" />
-            <button>
-                <i class="bi bi-house-door"></i>
-            </button>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-amber-800 p-4 flex items-center justify-between">
+        <h1 class="text-white text-2xl font-bold">HOMECRAFT</h1>
+        <div class="flex items-center space-x-4">
+            <div class="relative">
+                <input type="text" placeholder="Pencarian" class="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-white">
+                <i class="fas fa-search absolute top-3 right-3 text-gray-400"></i>
+            </div>
+            <img 
+                src="./assets/profile.jpg" 
+                alt="User profile picture" 
+                class="rounded-full border-2 border-white" 
+                width="40" 
+                height="40">
+            <span class="text-white">Aldorandy</span>
         </div>
-        <div class="profile">
-            <img src="./assets/profile.jpg" alt="Profile picture" />
-            <span>Aldorandy</span>
-        </div>
-    </div>
+    </header>
 
-    <div class="container">
-        <h1>Metode Pembayaran</h1>
-        <div class="payment-method">
-            <div class="payment-option">
-                <div class="dropdown" onclick="toggleBankList()">
-                    <span><i class="bi bi-bank"></i> Transfer Bank</span>
-                    <i class="bi bi-chevron-down"></i>
-                </div>
-                <ul class="bank-list">
-                    <li onclick="selectBank('Bank Mandiri')">
-                        <img src="./assets/MANDIRI.jpg" alt="Mandiri logo" />
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto p-4">
+        <h2 class="text-xl font-bold mb-4">
+            <i class="fas fa-money-check-alt"></i> Metode Pembayaran
+        </h2>
+
+        <!-- Pilihan Pembayaran -->
+        <section class="bg-white p-4 rounded-lg shadow">
+            <div class="mb-4">
+                <button class="w-full text-left p-3 bg-gray-100 rounded-lg flex justify-between items-center" onclick="toggleBankList()">
+                    <span><i class="fas fa-university"></i> Transfer Bank</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <ul class="bank-list hidden mt-2 space-y-2">
+                    <li class="flex items-center p-2 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100" onclick="selectBank('Bank Mandiri')">
+                        <img src="./assets/MANDIRI.jpg" alt="Mandiri logo" class="w-10 h-10 rounded mr-4">
                         <span>Bank Mandiri</span>
                     </li>
-                    <li onclick="selectBank('Bank BRI')">
-                        <img src="./assets/BRI.jpg" alt="BRI logo" />
+                    <li class="flex items-center p-2 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100" onclick="selectBank('Bank BRI')">
+                        <img src="./assets/BRI.png" alt="BRI logo" class="w-10 h-10 rounded mr-4">
                         <span>Bank Rakyat Indonesia</span>
                     </li>
-                    <li onclick="selectBank('Bank BCA')">
-                        <img src="./assets/BCA.jpg" alt="BCA logo" />
+                    <li class="flex items-center p-2 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100" onclick="selectBank('Bank BCA')">
+                        <img src="./assets/BCA.png" alt="BCA logo" class="w-10 h-10 rounded mr-4">
                         <span>Bank Central Asia</span>
                     </li>
-                    <li onclick="selectBank('Bank BNI')">
-                        <img src="./assets/BNI.jpg" alt="BNI logo" />
+                    <li class="flex items-center p-2 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100" onclick="selectBank('Bank BNI')">
+                        <img src="./assets/BNI.png" alt="BNI logo" class="w-10 h-10 rounded mr-4">
                         <span>Bank BNI</span>
                     </li>
                 </ul>
             </div>
-            <p id="selected-bank" class="mt-3"></p>
-            <button class="confirm-button" onclick="redirectToPaymentPage()">Konfirmasi Metode Pembayaran</button>
-        </div>
-    </div>
 
+            <!-- Konfirmasi Bank Terpilih -->
+            <p id="selected-bank" class="mt-3 text-gray-700 font-semibold"></p>
+            <button class="w-full bg-amber-800 text-white font-bold py-2 rounded-lg hover:bg-amber-700" onclick="redirectToPaymentPage()">
+                Konfirmasi Metode Pembayaran
+            </button>
+        </section>
+    </main>
+
+    <!-- Scripts -->
     <script>
         let selectedBank = '';
 
         function toggleBankList() {
             const bankList = document.querySelector('.bank-list');
-            bankList.style.display = (bankList.style.display === 'none' || bankList.style.display === '') 
-                ? 'block' 
-                : 'none';
+            bankList.classList.toggle('hidden');
         }
 
         function selectBank(bankName) {
@@ -93,7 +95,11 @@
                 alert('Silakan pilih bank terlebih dahulu!');
                 return;
             }
-            const url = `halamanpembayaran.php?bank=${encodeURIComponent(selectedBank)}`;
+
+            // Ambil totalAmount dari PHP yang sudah disimpan di session
+            const totalAmount = <?php echo json_encode($total_amount); ?>;
+            console.log(totalAmount); // Cek di console apakah totalAmount benar
+            const url = `halamanpembayaran.php?bank=${encodeURIComponent(selectedBank)}&total=${totalAmount}`;
             window.location.href = url;
         }
     </script>

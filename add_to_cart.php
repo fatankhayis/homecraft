@@ -27,7 +27,7 @@ if ($result->num_rows == 0) {
 
 // Ambil data gambar produk
 $row = $result->fetch_assoc();
-$image = $row['image']; // Gambar produk
+$item = $row['image']; // Gambar produk
 
 // Cek apakah produk sudah ada di keranjang
 $query = "SELECT * FROM cart WHERE user_id = ? AND product_id = ?";

@@ -95,12 +95,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_quantity'])) {
             while ($row = $result->fetch_assoc()):
               $subtotal = $row['price'] * $row['quantity'];
               $total += $subtotal;
+              // Tambahkan path ke folder "asset" di depan nama file gambar
+              $image_path = 'assets/' . htmlspecialchars($row['image']);
             ?>
               <tr class="border-b">
                 <td class="p-4 border border-gray-200"><input type="checkbox"></td>
                 <td class="p-4 border border-gray-200 flex items-center space-x-4">
                   <img 
-                    src="<?= htmlspecialchars($row['image']) ?>" 
+                    src="<?= $image_path ?>" 
                     alt="<?= htmlspecialchars($row['name']) ?>" 
                     class="w-20 h-20 rounded-md border" 
                     width="100" 
