@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Produk</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        .hover-bisque:hover {
+            background-color: bisque !important;
+        }
+        .active {
+            background-color: bisque !important;
+            font-weight: bold;
+            color: #8B4513 !important;
+            border-left: 4px solid #8B4513;
+            padding-left: 1rem;
+        }
+    </style>
+    <script>
+        // Fungsi untuk menangani pengiriman form
+        function handleSubmit(event) {
+            event.preventDefault(); // Mencegah pengiriman form secara default
+
+            // Ambil data dari form
+            const form = document.getElementById('productForm');
+            const formData = new FormData(form);
+
+            // Validasi gambar
+            const imageFile = formData.get('foto');
+            const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+            if (!allowedTypes.includes(imageFile.type)) {
+                alert("Hanya file JPG, JPEG, PNG, dan GIF yang diperbolehkan.");
+                return;
+            }
+
+            // Validasi ukuran gambar
+            if (imageFile.size > 500000) { // 500 KB
+                alert("Ukuran file terlalu besar.");
+                return;
+            }
+
+            // Mengirim data menggunakan fetch
+            fetch('/upload_product', {  // Gantilah '/upload_product' dengan endpoint backend Anda
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Produk berhasil ditambahkan!');
+                    form.reset();
+                } else {
+                    alert('Terjadi kesalahan: ' + data.message);
+                }
+            })
+            .catch(error => {
+                alert('Terjadi kesalahan dalam mengirim data.');
+            });
+        }
+    </script>
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <div class="flex flex-col min-h-screen">
+        <!-- Navbar -->
+        <header class="bg-brown-600 text-white p-4 flex justify-between items-center" style="background-color: #8B4513;">
+            <button onclick="window.location.href='seller.html'" class="text-lg font-semibold">HOMECRAFT Seller Centre</button>
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                    <img src="https://via.placeholder.com/40" alt="User profile picture" class="rounded-full w-10 h-10" />
+                    <span>nama.id</span>
+                </div>
+                <i class="fas fa-th-large"></i>
+                <i class="fas fa-bell"></i>
+                <button class="px-4 py-2 rounded text-white hover-bisque" style="background-color: #8B4513;">Kembali ke Akun Pembeli</button>
+            </div>
+        </header>
+
+        <div class="flex flex-1">
+            <!-- Sidebar -->
+            <aside class="bg-white w-64 p-4 shadow">
+                <nav class="space-y-4">
+                    <!-- Pesanan -->
+                    <div>
+                        <h2 class="font-semibold mb-2 text-brown-600">
+                            <i class="fas fa-shopping-cart mr-2 text-brown-600"></i>Pesanan
+                        </h2>
+                        <ul class="space-y-1">
+                            <li><a href="pesanansaya.html" class=" block hover-bisque p-2 rounded">Pesanan Saya</a></li>
+                        </ul>
+                    </div>
+                    <!-- Produk -->
+                    <div>
+                        <h2 class="font-semibold mb-2 text-brown-600">
+                            <i class="fas fa-box mr-2 text-brown-600"></i>Produk
+                        </h2>
+                        <ul class="space-y-1">
+                            <li><a href="produkseller.html" class=" block hover-bisque p-2 rounded">Produk Saya</a></li>
+                            <li><a href="add_product.html" class="block hover-bisque p-2 rounded active">Tambah Produk Baru</a></li>
+                            <li class="hover-bisque p-2 rounded cursor-pointer">Pelanggaran Saya</li>
+                        </ul>
+                    </div>
+                    <!-- Keuangan -->
+                    <div>
+                        <h2 class="font-semibold mb-2 text-brown-600">
+                            <i class="fas fa-wallet mr-2 text-brown-600"></i>Keuangan
+                        </h2>
+                        <ul class="space-y-1">
+                            <li><a href="penghasilansaya.html" class="block hover-bisque p-2 rounded">Penghasilan Saya</a></li>
+                            <li><a href="saldosaya.html" class="block hover-bisque p-2 rounded">Saldo Saya</a></li>
+                            <li class="block hover-bisque p-2 rounded cursor-pointer">Rekening Saya</li>
+                        </ul>
+                    </div>
+                    <!-- Data Toko Saya -->
+                    <div>
+                        <h2 class="font-semibold mb-2 text-brown-600">
+                            <i class="fas fa-store mr-2 text-brown-600"></i>Data Toko Saya
+                        </h2>
+                        <ul class="space-y-1">
+                            <li class="hover-bisque p-2 rounded cursor-pointer">Data Toko Saya</li>
+                        </ul>
+                    </div>
+                    <!-- Toko -->
+                    <div>
+                        <h2 class="font-semibold mb-2 text-brown-600">
+                            <i class="fas fa-tools mr-2 text-brown-600"></i>Toko
+                        </h2>
+                        <ul class="space-y-1">
+                            <li class="hover-bisque p-2 rounded cursor-pointer">Dekorasi Toko</li>
+                            <li class="hover-bisque p-2 rounded cursor-pointer">Pengaturan Toko</li>
+                        </ul>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="flex-1 p-8 bg-gray-50">
+                <div class="bg-white w-full max-w-4xl mx-auto rounded shadow p-8">
+                    <h1 class="text-2xl font-semibold text-brown-600 mb-6">Tambah Produk Baru</h1>
+                    <form id="productForm" onsubmit="handleSubmit(event)" enctype="multipart/form-data">
+                        <!-- Nama Produk -->
+                        <div class="mb-4">
+                            <label for="nama-produk" class="block text-gray-700 font-medium mb-2">Nama Produk</label>
+                            <input type="text" id="nama-produk" name="nama-produk" placeholder="Masukkan nama produk" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-brown-500" required>
+                        </div>
+
+                        <!-- Deskripsi Produk -->
+                        <div class="mb-4">
+                            <label for="deskripsi" class="block text-gray-700 font-medium mb-2">Deskripsi Produk</label>
+                            <textarea id="deskripsi" name="deskripsi" rows="4" placeholder="Tuliskan deskripsi produk" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-brown-500" required></textarea>
+                        </div>
+
+                        <!-- Foto Produk -->
+                        <div class="mb-4">
+                            <label for="foto" class="block text-gray-700 font-medium mb-2">Foto Produk</label>
+                            <input type="file" id="foto" name="foto" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-brown-500" accept="image/*" required>
+                        </div>
+
+                        <!-- Harga Produk -->
+                        <div class="mb-4">
+                            <label for="harga" class="block text-gray-700 font-medium mb-2">Harga Produk</label>
+                            <input type="number" id="harga" name="harga" placeholder="Masukkan harga produk" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-brown-500" required>
+                        </div>
+
+                        <!-- Jenis Produk -->
+                        <div class="mb-4">
+                            <label for="jenis-produk" class="block text-gray-700 font-medium mb-2">Jenis Produk</label>
+                            <select id="jenis-produk" name="jenis-produk" class="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-brown-500" required>
+                                <option value="" disabled selected>Pilih jenis produk</option>
+                                <option value="meja">Meja</option>
+                                <option value="kursi">Kursi</option>
+                                <option value="laci">Laci</option>
+                                <option value="hiasan">Hiasan</option>
+                                <option value="rak">Rak</option>
+                            </select>
+                        </div>
+
+                        <!-- Tombol Submit -->
+                        <div class="flex justify-end">
+                            <button type="reset" class="bg-gray-300 text-gray-700 px-6 py-2 rounded hover:bg-gray-400 mr-4">Reset</button>
+                            <button type="submit" class="bg-brown-600 text-white px-6 py-2 rounded hover:bg-brown-700" style="background-color: #8B4513;">Tambah Produk</button>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

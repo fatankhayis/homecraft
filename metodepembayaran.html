@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Metode Pembayaran</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        .payment-method {
+            border: 1px solid #000;
+            padding: 20px;
+            border-radius: 4px;
+        }
+
+        .payment-option {
+            margin-bottom: 20px;
+        }
+
+        .payment-option .dropdown {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .payment-option .dropdown span {
+            flex-grow: 1;
+            font-weight: bold;
+        }
+
+        .payment-option .dropdown i {
+            margin-right: 10px;
+        }
+
+        .payment-option .bank-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap; /* Ensure the list items wrap when necessary */
+            gap: 20px; /* Add space between items */
+            max-height: 200px; /* Limit height of the bank list */
+            overflow-y: auto; /* Enable scrolling if the list exceeds the max height */
+        }
+
+        .payment-option .bank-list li {
+            width: 45%;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .payment-option .bank-list li img {
+            width: 50px;
+            height: auto;
+            margin-right: 10px;
+            border-radius: 4px;
+        }
+
+        .payment-option .bank-list li span {
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+
+        .selected-bank {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .confirm-button {
+            background-color: #b45c25;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .confirm-button:hover {
+            background-color: bisque;
+            color: #000;
+        }
+
+        /* Custom Dropdown styling */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .dropdown.active .dropdown-menu {
+            display: block;
+        }
+    </style>
+</head>
+<script>
+    function toggleDropdown() {
+        const dropdown = document.getElementById("profileDropdown");
+        dropdown.classList.toggle("active");
+    }
+
+    function toggleCodDescription() {
+        const codDescription = document.getElementById("codDescription");
+        codDescription.style.display = (codDescription.style.display === 'none' || codDescription.style.display === '') 
+            ? 'block' 
+            : 'none';
+    }
+
+    function toggleBankList() {
+        const bankList = document.querySelector('.bank-list');
+        bankList.style.display = (bankList.style.display === 'none' || bankList.style.display === '') 
+            ? 'flex' 
+            : 'none';
+    }
+
+    function selectBank(bankName) {
+        const selectedBankDiv = document.getElementById('selectedBank');
+        selectedBankDiv.textContent = `Anda memilih ${bankName} sebagai metode pembayaran.`;
+        selectedBankDiv.style.display = 'block';
+    }
+
+    function redirectToPaymentPage() {
+        window.location.href = 'halamanpembayaran.html';
+    }
+
+    document.addEventListener("click", function (event) {
+        const dropdown = document.getElementById("profileDropdown");
+        const profileIcon = document.getElementById("profileIcon");
+        if (!dropdown.contains(event.target) && !profileIcon.contains(event.target)) {
+            dropdown.classList.remove("active");
+        }
+    });
+</script>
+
+<body class="bg-white">
+    <!-- Navbar -->
+    <header class="bg-amber-800 p-4 flex items-center justify-between fixed top-0 left-0 w-full z-50">
+        <a href="beranda.html" class="text-white text-2xl font-bold">HOMECRAFT</a>
+        <div class="flex items-center space-x-6 text-white">
+            <i class="fas fa-search cursor-pointer"></i>
+            <div class="relative">
+                <i class="fas fa-bell cursor-pointer"></i>
+                <span class="absolute -top-1 -right-1 flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+                </span>
+            </div>
+            <a href="keranjang.html"><i class="fas fa-shopping-cart"></i></a>
+            <div class="relative">
+                <i id="profileIcon" class="fas fa-user-circle cursor-pointer"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Payment Section -->
+    <div class="container mt-20 p-4">
+        <h1 class="text-2xl mb-4">Metode Pembayaran</h1>
+        <div class="payment-method">
+            <div class="payment-option">
+                <div class="dropdown" onclick="toggleCodDescription()">
+                    <i class="bi bi-truck"></i>
+                    <span>Cash on Delivery (COD)</span>
+                    <i class="bi bi-chevron-down"></i>
+                </div>
+                <div class="cod-description" id="codDescription" style="display: none;">
+                    <p>Cash On Delivery, anda bisa melakukan pembayaran ketika barang sudah sampai di alamat anda.</p>
+                </div>
+            </div>
+            <div class="payment-option">
+                <div class="dropdown" onclick="toggleBankList()">
+                    <span><i class="bi bi-bank"></i> Transfer Bank</span>
+                    <i class="bi bi-chevron-down"></i>
+                </div>
+                <ul class="bank-list">
+                    <li onclick="selectBank('Bank Mandiri')">
+                        <img src="./assets/MANDIRI.jpg" alt="Mandiri logo" />
+                        <span>Bank Mandiri</span>
+                    </li>
+                    <li onclick="selectBank('Bank Rakyat Indonesia')">
+                        <img src="./assets/BRI.jpg" alt="BRI logo" />
+                        <span>Bank Rakyat Indonesia</span>
+                    </li>
+                    <li onclick="selectBank('Bank Central Asia')">
+                        <img src="./assets/BCA.jpg" alt="BCA logo" />
+                        <span>Bank Central Asia</span>
+                    </li>
+                    <li onclick="selectBank('Bank Syariah Indonesia')">
+                        <img src="./assets/BSI.jpg" alt="BSI logo" />
+                        <span>Bank Syariah Indonesia</span>
+                    </li>
+                    <li onclick="selectBank('Bank BNI')">
+                        <img src="./assets/BNI.jpg" alt="BNI logo" />
+                        <span>Bank BNI</span>
+                    </li>
+                    <li onclick="selectBank('SeaBank')">
+                        <img src="./assets/SEABANK.jpg" alt="SeaBank logo" />
+                        <span>SeaBank</span>
+                    </li>
+                    <li onclick="selectBank('CIMB Bank')">
+                        <img src="./assets/CIMB.jpg" alt="CIMB logo" />
+                        <span>CIMB Bank</span>
+                    </li>
+                    <li onclick="selectBank('CIMB Bank')">
+                        <img src="./assets/btn.jpg" alt="CIMB logo" />
+                        <span>BTN Bank</span>
+                    </li>
+                </ul>
+                <div class="selected-bank" id="selectedBank" style="display: none;"></div>
+            </div>
+
+            
+            <button class="confirm-button" onclick="redirectToPaymentPage()">Konfirmasi Metode Pembayaran</button>
+        </div>
+    </div>
+
+</body>
+</html>

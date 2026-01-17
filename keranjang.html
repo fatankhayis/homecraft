@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homecraft Keranjang</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  <style>
+    /* Dropdown Styling */
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      z-index: 10;
+      background: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 0.25rem;
+      overflow: hidden;
+    }
+
+    .dropdown.active {
+      display: block;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      color: black;
+      transition: background 0.2s;
+    }
+
+    .dropdown a:hover {
+      background: #f3f3f3;
+    }
+
+    /* Notification Ping Effect */
+    .relative .animate-ping {
+      animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+
+    @keyframes ping {
+      75%, 100% {
+        transform: scale(2);
+        opacity: 0;
+      }
+    }
+  </style>
+
+  <script>
+    // Toggle dropdown menu
+    function toggleDropdown() {
+      const dropdown = document.getElementById("profileDropdown");
+      dropdown.classList.toggle("active");
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", function (event) {
+      const dropdown = document.getElementById("profileDropdown");
+      const profileIcon = document.getElementById("profileIcon");
+      if (!dropdown.contains(event.target) && !profileIcon.contains(event.target)) {
+        dropdown.classList.remove("active");
+      }
+    });
+
+    // Handle quantity updates and total price calculation
+    function updateQuantity(row, isIncrement) {
+      const quantityInput = row.querySelector('.quantity-input');
+      const quantity = parseInt(quantityInput.value, 10);
+
+      if (isIncrement) {
+        quantityInput.value = quantity + 1;
+      } else if (quantity > 1) {
+        quantityInput.value = quantity - 1;
+      }
+
+      const pricePerUnit = parseInt(row.querySelector('.price').textContent.replace('Rp', ''), 10);
+      const newTotalPrice = pricePerUnit * parseInt(quantityInput.value, 10);
+      row.querySelector('.total-price').textContent = `Rp${newTotalPrice.toLocaleString()}`;
+    }
+
+    // Handle deletion confirmation
+    function confirmDeletion(row) {
+      if (confirm('Apakah Anda ingin menghapus ini dari keranjang Anda?')) {
+        row.remove(); // Remove the selected row
+      }
+    }
+  </script>
+</head>
+<body class="bg-white">
+  <!-- Navbar -->
+  <header class="bg-amber-800 p-4 flex items-center justify-between fixed top-0 left-0 w-full z-50">
+    <!-- Logo Homecraft -->
+    <a href="beranda.html" class="text-white text-2xl font-bold">HOMECRAFT</a>
+    <!-- User Section -->
+    <div class="flex items-center space-x-6 text-white">
+      <!-- Search Icon -->
+      <i class="fas fa-search cursor-pointer"></i>
+      <!-- Notification Icon -->
+      <i class="fas fa-bell relative text-white">
+        <span class="absolute -top-2 -right-2 flex h-4 w-4">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-4 w-4 bg-blue-500"></span>
+        </span>
+      </i>
+      <!-- Cart Icon -->
+      <a href="keranjang.html"><i class="fas fa-shopping-cart"></i></a>
+      <!-- User Profile Dropdown -->
+      <div class="relative">
+        <i id="profileIcon" class="fas fa-user-circle cursor-pointer" onclick="toggleDropdown()"></i>
+        <div id="profileDropdown" class="dropdown">
+          <a href="profilesaya.html">Profile Saya</a>
+          <a href="menu.html">Pesanan Saya</a>
+          <a href="logout.html">Keluar</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="pt-20 p-4">
+    <h2 class="text-xl font-bold mb-4 flex items-center space-x-2">
+      <i class="fas fa-shopping-cart"></i>
+      <span>Keranjang Belanja</span>
+    </h2>
+
+    <div class="overflow-x-auto">
+      <table class="min-w-full border-collapse border border-gray-200">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="p-4 border border-gray-200 text-left"><input type="checkbox"></th>
+            <th class="p-4 border border-gray-200 text-left">Produk</th>
+            <th class="p-4 border border-gray-200 text-left">Harga Satuan</th>
+            <th class="p-4 border border-gray-200 text-left">Kuantitas</th>
+            <th class="p-4 border border-gray-200 text-left">Total Harga</th>
+            <th class="p-4 border border-gray-200 text-left">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Row 1 -->
+          <tr class="border-b">
+            <td class="p-4 border border-gray-200"><input type="checkbox"></td>
+            <td class="p-4 border border-gray-200 flex items-center space-x-4">
+              <img 
+                src="./assets/mejapendek.jpg" 
+                alt="Meja Estetik" 
+                class="w-20 h-20 rounded-md border">
+              <span>Meja Estetik</span>
+            </td>
+            <td class="p-4 border border-gray-200 price">Rp400.000</td>
+            <td class="p-4 border border-gray-200">
+              <div class="flex items-center space-x-2">
+                <button class="border px-2 rounded" onclick="updateQuantity(this.closest('tr'), false)">-</button>
+                <input type="text" value="1" class="w-12 text-center border rounded quantity-input" readonly>
+                <button class="border px-2 rounded" onclick="updateQuantity(this.closest('tr'), true)">+</button>
+              </div>
+            </td>
+            <td class="p-4 border border-gray-200 total-price text-brown-500">Rp400.000</td>
+            <td class="p-4 border border-gray-200">
+              <button class="text-brown-500 hover:underline" onclick="confirmDeletion(this.closest('tr'))">Hapus</button>
+              <button class="text-brown-500 hover:underline ml-2" onclick="window.location.href='detailkeranjang.html'">Beli</button>
+            </td>
+          </tr>
+          <!-- Row 2 -->
+          <tr class="border-b">
+            <td class="p-4 border border-gray-200"><input type="checkbox"></td>
+            <td class="p-4 border border-gray-200 flex items-center space-x-4">
+              <img 
+                src="./assets/lampu.jpg" 
+                alt="Meja Kerja" 
+                class="w-20 h-20 rounded-md border">
+              <span>Meja Kerja</span>
+            </td>
+            <td class="p-4 border border-gray-200 price">Rp500.000</td>
+            <td class="p-4 border border-gray-200">
+              <div class="flex items-center space-x-2">
+                <button class="border px-2 rounded" onclick="updateQuantity(this.closest('tr'), false)">-</button>
+                <input type="text" value="1" class="w-12 text-center border rounded quantity-input" readonly>
+                <button class="border px-2 rounded" onclick="updateQuantity(this.closest('tr'), true)">+</button>
+              </div>
+            </td>
+            <td class="p-4 border border-gray-200 total-price text-brown-500">Rp500.000</td>
+            <td class="p-4 border border-gray-200">
+              <button class="text-brown-500 hover:underline" onclick="confirmDeletion(this.closest('tr'))">Hapus</button>
+              <button class="text-brown-500 hover:underline ml-2" onclick="window.location.href='detailkeranjang.html'">Beli</button>
+            </td>
+          </tr>
+          <!-- Row 3 -->
+          <tr class="border-b">
+            <td class="p-4 border border-gray-200"><input type="checkbox"></td>
+            <td class="p-4 border border-gray-200 flex items-center space-x-4">
+              <img 
+                src="./assets/lemari.jpg" 
+                alt="Meja Nongkrong" 
+                class="w-20 h-20 rounded-md border">
+              <span>Meja Nongkrong</span>
+            </td>
+            <td class="p-4 border border-gray-200 price">Rp600.000</td>
+            <td class="p-4 border border-gray-200">
+              <div class="flex items-center space-x-2">
+                <button class="border px-2 rounded" onclick="updateQuantity(this.closest('tr'), false)">-</button>
+                <input type="text" value="1" class="w-12 text-center border rounded quantity-input" readonly>
+                <button class="border px-2 rounded" onclick="updateQuantity(this.closest('tr'), true)">+</button>
+              </div>
+            </td>
+            <td class="p-4 border border-gray-200 total-price text-brown-500">Rp600.000</td>
+            <td class="p-4 border border-gray-200">
+              <button class="text-brown-500 hover:underline" onclick="confirmDeletion(this.closest('tr'))">Hapus</button>
+              <button class="text-brown-500 hover:underline ml-2" onclick="window.location.href='detailkeranjang.html'">Beli</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,190 @@
+body {
+    font-family: 'Times New Roman', Times, serif; /* Menetapkan font untuk seluruh halaman */
+    margin: 0; /* Menghapus margin default */
+    padding: 0; /* Menghapus padding default */
+    background-color: #f4f4f4; /* Warna latar belakang halaman */
+}
+
+/* Navbar Styling */
+header.bg-brown {
+    background-color: #8B4513; /* Warna coklat */
+    padding: 15px 0; /* Jarak atas dan bawah */
+    position: relative; /* Untuk mengatur posisi elemen di dalam header */
+    font-size: 20px;
+}
+
+header h1 {
+    color: white; /* Warna teks putih */
+    font-weight: bold;  
+    margin: 0; /* Hilangkan margin */
+}
+
+/* Foto Profil di Pojok Kanan Atas */
+.profile-pic-container {
+    position: absolute;
+    top: 10px; /* Jarak dari atas navbar */
+    right: 15px; /* Jarak dari kanan navbar */
+    display: flex;
+    align-items: center;
+}
+
+.profile-pic {
+    width: 40px; /* Lebar lingkaran */
+    height: 40px; /* Tinggi lingkaran, sama dengan lebar */
+    border-radius: 50%; /* Membuat bentuk lingkaran */
+    overflow: hidden; /* Memastikan gambar tidak keluar dari lingkaran */
+    border: 2px solid white; /* Tambahkan border putih untuk estetika */
+}
+
+.profile-pic img {
+    width: 100%; /* Pastikan gambar mengisi lingkaran */
+    height: 100%; /* Pastikan gambar memenuhi lingkaran */
+    object-fit: cover; /* Potong gambar agar sesuai dengan lingkaran */
+}
+
+.text-white {
+    font-size: 0.9rem; /* Ukuran teks nama */
+    margin-left: 8px; /* Jarak teks dari foto */
+}
+
+/* Navbar Icons */
+.navbar-icons {
+    display: flex; /* Menggunakan flexbox untuk tata letak */
+    justify-content: center; /* Memusatkan ikon secara horizontal */
+}
+
+.navbar-icons .nav-link {
+    color: white; /* Warna ikon putih */
+    font-size: 6 rem; /* Ukuran ikon yang lebih besar */
+    margin: 0 15px; /* Jarak antar ikon */
+    text-decoration: none; /* Hilangkan underline */
+}
+
+.navbar-icons .nav-link:hover {
+    color: bisque; /* Warna emas saat di-hover */
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .navbar-icons .nav-link {
+        margin: 0 10px; /* Kurangi jarak antar ikon di layar kecil */
+        font-size: 1.2rem; /* Kurangi ukuran ikon */
+    }
+    .profile-pic-container {
+        top: 8px;
+        right: 10px;
+    }
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .navbar-icons .nav-link {
+        margin: 0 10px; /* Kurangi jarak antar ikon di layar kecil */
+        font-size: 1.2rem; /* Kurangi ukuran ikon */
+    }
+}
+
+/* Banner Styling */
+.banner {
+    width: 100%;
+    height: 100px; /* Set a height for the banner */
+    background-size: cover; /* Ensure the image covers the entire banner */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Avoid tiling */
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+/* Product Cards */
+.card {
+    border: none; /* Hapus border default */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Tambahkan shadow */
+    border-radius: 5px; /* Sudut melengkung */
+    overflow: hidden;
+}
+
+.card-img-top {
+    width: 100%; /* Memastikan gambar mengisi lebar penuh */
+    height: 200px; /* Menjaga tinggi gambar tetap konsisten */
+    object-fit: contain; /* Memastikan gambar tampil penuh tanpa dipotong */
+    background-color: bisque; /* Background warna bisque untuk card */
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #343a40; /* Warna teks */
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #6c757d; /* Warna teks deskripsi */
+}
+
+.card p {
+    margin-bottom: 0.5rem;
+}
+
+.card .fw-bold {
+    color: #212529; /* Warna harga */
+}
+
+/* Button */
+.card button {
+    background-color: #a0522d; /* Warna tombol */
+    color: #fff;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    padding: 12px;
+    border-radius: 5px;
+    border: none;
+}
+
+.card button:hover {
+    background-color: bisque; /* Warna hover tombol */
+}
+
+
+/* Warna Coklat untuk Ikon */
+.fas.fa-map-marker-alt,
+.bi.bi-geo-alt-fill,
+.bi.bi-star-fill,
+.bi.bi-cash-coin {
+    color: #a0522d; /* Warna cokelat untuk ikon */
+}
+
+/* Menambahkan jarak antara ikon dan teks */
+.card-text i,
+.card .fw-bold i {
+    margin-right: 5px; /* Memberikan jarak antara ikon dan teks */
+}
+
+/* Untuk menjaga ikon tetap dalam ukuran yang konsisten */
+.card-text i,
+.card .fw-bold i {
+    font-size: 1rem; /* Menjaga ukuran ikon tetap */
+}
+
+/* General Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa; /* Warna background utama */
+    color: #343a40;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+/* Spacing */
+.my-4 {
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+/* Responsive Styling for Product Cards */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 1rem; /* Memberikan jarak antar card pada layar kecil */
+    }
+}

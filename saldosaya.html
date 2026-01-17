@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPACEWOOD Seller Centre</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        .hover-bisque:hover {
+            background-color: bisque !important;
+        }
+        .active {
+            background-color: bisque !important;
+            font-weight: bold;
+            color: #8B4513 !important;
+            border-left: 4px solid #8B4513;
+            padding-left: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <div class="flex flex-col min-h-screen">
+        <!-- Header -->
+        <header class="bg-brown-600 text-white p-4 flex justify-between items-center" style="background-color: #8B4513;">
+            <h1 class="text-lg font-semibold cursor-pointer">HOMECRAFT Seller Centre</h1>
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                    <img src="https://via.placeholder.com/40" 
+                         alt="User profile picture" 
+                         class="rounded-full w-10 h-10" />
+                    <span>nama.id</span>
+                </div>
+                <i class="fas fa-th-large cursor-pointer"></i>
+                <i class="fas fa-bell cursor-pointer"></i>
+                <button class="px-4 py-2 rounded text-white hover-bisque" style="background-color: #8B4513;">Kembali ke Akun Pembeli</button>
+            </div>
+        </header>
+
+        <div class="flex flex-1">
+            <!-- Sidebar -->
+            <aside class="bg-white w-64 p-4 shadow">
+                <nav class="space-y-4">
+                    <div>
+                        <h2 class="font-semibold mb-2 text-brown-600">
+                            <i class="fas fa-shopping-cart mr-2 text-brown-600"></i>Pesanan
+                        </h2>
+                        <ul class="space-y-1">
+                            <li><a href="pesanansaya.html" class=" block hover-bisque p-2 rounded">Pesanan Saya </a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 class="font-semibold mb-2 text-brown-600">
+                            <i class="fas fa-box mr-2 text-brown-600"></i>Produk
+                        </h2>
+                        <ul class="space-y-1">
+                            <li><a href="produkseller.html" class=" block hover-bisque p-2 rounded">Produk Saya</a></li>
+                            <li><a href="add_product.html" class="block hover-bisque p-2 rounded">Tambah Produk Baru</a></li>
+                            <li class="block hover-bisque p-2 rounded cursor-pointer">Pelanggaran Saya</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 class="font-semibold mb-2 text-brown-600">
+                            <i class="fas fa-wallet mr-2 text-brown-600"></i>Keuangan
+                        </h2>
+                        <ul class="space-y-1">
+                            <li><a href="penghasilansaya.html" class="block hover-bisque p-2 rounded">Penghasilan Saya</a></li>
+                            <li class="active cursor-pointer">Saldo Saya</li>
+                            <li class="block hover-bisque p-2 rounded cursor-pointer">Rekening Saya</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 class="font-semibold mb-2 text-brown-600">
+                            <i class="fas fa-store mr-2 text-brown-600"></i>Data Toko Saya
+                        </h2>
+                        <ul class="space-y-1">
+                            <li class="block hover-bisque p-2 rounded cursor-pointer">Data Toko Saya</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 class="font-semibold mb-2 text-brown-600">
+                            <i class="fas fa-tools mr-2 text-brown-600"></i>Toko
+                        </h2>
+                        <ul class="space-y-1">
+                            <li class="block hover-bisque p-2 rounded cursor-pointer">Dekorasi Toko</li>
+                            <li class="block hover-bisque p-2 rounded cursor-pointer">Pengaturan Toko</li>
+                        </ul>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="flex-1 p-6">
+                <!-- Informasi Saldo -->
+                <section class="bg-white p-6 rounded shadow mb-6">
+                    <h1 class="text-xl font-semibold text-brown-600 mb-4">Informasi Saldo</h1>
+                    <div class="flex justify-between items-center">
+                        <h2 class="text-3xl font-bold">Rp 2.500.000</h2>
+                        <div class="text-gray-600">Rekening Bank Saya: ****4672</div>
+                    </div>
+                </section>
+
+                <!-- Rincian Penghasilan -->
+                <section class="bg-white p-6 rounded shadow">
+                    <h1 class="text-xl font-semibold text-brown-600 mb-4">Rincian Penghasilan</h1>
+                    <div class="mb-4">
+                        <select class="p-2 border rounded">
+                            <option value="1">Minggu Ini: 24/07/2024 - 24/07/2024</option>
+                        </select>
+                    </div>
+                    <table class="w-full border-collapse">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="border p-2 text-left">Pesanan</th>
+                                <th class="border p-2 text-left">Tanggal Dana Dilepaskan</th>
+                                <th class="border p-2 text-left">Status</th>
+                                <th class="border p-2 text-left">Metode Pembayaran</th>
+                                <th class="border p-2 text-left">Total Penghasilan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="5" class="text-center p-6">
+                                    <i class="fas fa-file-alt text-gray-400 text-5xl"></i>
+                                    <p class="text-gray-600 mt-2">Tidak ada data tersedia</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

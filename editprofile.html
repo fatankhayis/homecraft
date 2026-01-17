@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <title>Profile Page</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            overflow: hidden;
+            margin-top: 6rem;
+        }
+
+        .profile-card .header {
+            background: #a0522d;
+            padding: 4rem 1rem 3rem;
+            position: relative;
+        }
+
+        .profile-card .header .profile-img {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 4px solid white;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        .profile-card h2 {
+            margin: 3.5rem 0 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .profile-card p {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 1rem 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            padding: 1rem 0;
+        }
+
+        .stats div {
+            text-align: center;
+        }
+
+        .stats div span {
+            display: block;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #a0522d;
+        }
+
+        .stats div small {
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        .Edit button {
+            background-color: #a0522d;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .Edit button:hover {
+            background-color: bisque;
+        }
+
+        .Edit {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            z-index: 10;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 0.25rem;
+            overflow: hidden;
+        }
+
+        .dropdown.active {
+            display: block;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            color: black;
+            transition: background 0.2s;
+        }
+
+        .dropdown a:hover {
+            background: #f3f3f3;
+        }
+        .edit-profile-link {
+        color: #8B4513; /* Brown color */
+        padding-bottom: 0.5rem;
+        text-decoration: none; /* Optional: to remove underline */
+    }
+
+    .edit-profile-link:hover {
+        color: #6B3F1D; /* Darker brown on hover */
+    }
+    </style>
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById("profileDropdown");
+            dropdown.classList.toggle("active");
+        }
+
+        document.addEventListener("click", function (event) {
+            const dropdown = document.getElementById("profileDropdown");
+            const profileIcon = document.getElementById("profileIcon");
+            if (!dropdown.contains(event.target) && !profileIcon.contains(event.target)) {
+                dropdown.classList.remove("active");
+            }
+        });
+    </script>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="bg-amber-800 p-4 flex items-center justify-between fixed top-0 left-0 w-full z-50">
+        <a href="beranda.html" class="text-white text-2xl font-bold">HOMECRAFT</a>
+        <div class="flex items-center space-x-6 text-white">
+            <i class="fas fa-search cursor-pointer"></i>
+            <i class="fas fa-bell relative text-white">
+                <span class="absolute -top-2 -right-2 flex h-4 w-4">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-4 w-4 bg-blue-500"></span>
+                </span>
+            </i>
+            <a href="keranjang.html"><i class="fas fa-shopping-cart"></i></a>
+            <div class="relative">
+                <i id="profileIcon" class="fas fa-user-circle cursor-pointer" onclick="toggleDropdown()"></i>
+                <div id="profileDropdown" class="dropdown">
+                    <a href="profilesaya.html">Profile Saya</a>
+                    <a href="menu.html">Pesanan Saya</a>
+                    <a href="logout.html">Keluar</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <main class="w-full max-w-5xl bg-white mt-20 rounded-lg shadow-md mx-auto p-6">
+        <!-- Profile Info and Form -->
+        <div>
+            <div class="flex items-center space-x-4 mb-6">
+                <img src="./assets/profilee.jpg" alt="Profile Picture" class="w-20 h-20 rounded-full border-4 border-white shadow">
+                <div>
+                    <h2 class="text-xl font-bold">Aldorandy</h2>
+                    <p class="text-sm text-gray-500">Ubah Foto</p>
+                </div>
+            </div>
+<!-- Tabs -->
+<nav class="mb-4 border-b">
+    <ul class="flex space-x-4">
+        <li><a href="editprofile.html" class="edit-profile-link">Edit Profile</a></li>
+    </ul>
+</nav>
+
+            <!-- Form -->
+            <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="firstName" class="block text-sm font-medium text-gray-700">Nama depan</label>
+                    <input type="text" id="firstName" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-amber-500 focus:border-amber-500">
+                </div>
+                <div>
+                    <label for="lastName" class="block text-sm font-medium text-gray-700">Nama terakhir</label>
+                    <input type="text" id="lastName" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-amber-500 focus:border-amber-500">
+                </div>
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700">Nomor HandPhone</label>
+                    <input type="text" id="phone" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-amber-500 focus:border-amber-500">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-amber-500 focus:border-amber-500">
+                </div>
+                <div>
+                    <label for="city" class="block text-sm font-medium text-gray-700">Kota</label>
+                    <input type="text" id="city" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-amber-500 focus:border-amber-500">
+                </div>
+                <div>
+                    <label for="state" class="block text-sm font-medium text-gray-700">Kode Pos</label>
+                    <input type="text" id="state" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-amber-500 focus:border-amber-500">
+                </div>
+                <div>
+                    <label for="postcode" class="block text-sm font-medium text-gray-700">Alamat detail</label>
+                    <input type="text" id="postcode" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-amber-500 focus:border-amber-500">
+                </div>
+                <div>
+                    <label for="country" class="block text-sm font-medium text-gray-700">Provinsi</label>
+                    <select id="country" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-amber-500 focus:border-amber-500">
+                        <option>Sumatera Barat</option>
+                        <option>Sumatera Utara</option>
+                        <option>Sumatera Selatan</option>
+                        <option>Jawa Barat</option>
+                        <option>Jawa Timur</option>
+                        <option>Jawa Tengah</option>
+                        <option>Kalimantan Barat</option>
+                        <option>Kalimantan Timur</option>
+                        <option>Kepulauan Riau</option>
+                        <option>Bangka Belitung</option>
+                    </select>
+                </div>
+            </form>
+
+            <div class="flex justify-end mt-6">
+                <button class="px-4 py-2 bg-amber-800 text-white rounded-md">Simpan</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

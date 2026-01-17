@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>HomeCraft - Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body style="background-color: #666666;">
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <!-- Form Login Section -->
+                <form class="login100-form validate-form" id="loginForm">
+                    <span class="login100-form-title p-b-43">
+                        Hello, Seller
+                    </span>
+                    <div class="wrap-input100 validate-input" data-validate="Username is required">
+                        <input class="input100" type="text" name="username" id="username">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">Username</span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+                        <input class="input100" type="password" name="password" id="password">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">Password</span>
+                    </div>
+                    <div class="flex-sb-m w-full p-t-3 p-b-32">
+                        <div class="contact100-form-checkbox">
+                            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                            <label class="label-checkbox100" for="ckb1">Remember me</label>
+                        </div>
+                        <div>
+                            <a href="#" class="txt1">Forgot Password?</a>
+                        </div>
+                    </div>
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" type="submit">
+                            Login
+                        </button>
+                    </div>
+                    <div class="text-center p-t-46 p-b-20">
+                        <span class="txt2">or login using</span>
+                    </div>
+                    <div class="login100-form-social flex-c-m">
+                        <button class="login100-form-btn" style="display: flex; align-items: center; justify-content: center; background: #fff; color: #000; padding: 10px; border: none; border-radius: 5px;">
+                            <img src="assets/search.png" alt="Google Icon" style="width: 24px; height: 24px; margin-right: 10px;">
+                            Login with Google
+                        </button>
+                    </div>                    
+                    <p class="text-center txt2 p-t-20">
+                        Don't have an account? <a href="halamandaftar.html" class="txt1">Sign up here</a>.
+                    </p>
+                </form>
+                <!-- Background Image Section -->
+                <div class="login100-more" style="background-image: url('assets/kayu12.jpg');"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Section -->
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <script>
+        // Fungsi untuk memeriksa apakah input memiliki nilai dan menambahkan kelas has-val
+        function addHasValClass() {
+            var inputs = document.querySelectorAll('.input100');
+
+            inputs.forEach(function(input) {
+                if (input.value.trim() !== "") {
+                    input.classList.add('has-val');
+                } else {
+                    input.classList.remove('has-val');
+                }
+            });
+        }
+
+        // Menambahkan event listener pada setiap input
+        document.getElementById("username").addEventListener("input", addHasValClass);
+        document.getElementById("password").addEventListener("input", addHasValClass);
+        // Menambahkan event listener pada form login
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();  // Mencegah pengiriman form default
+
+            // Ambil nilai username dan password
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // Periksa apakah username dan password sesuai dengan data yang valid
+            if (username === "kelompok 10" && password === "123") {
+                // Jika benar, arahkan ke halaman seller
+                window.location.href = "seller.html";
+            } else {
+                // Jika salah, tampilkan peringatan
+                alert("Username atau Password salah. Silakan coba lagi.");
+            }
+        });
+    </script>
+</body>
+</html>

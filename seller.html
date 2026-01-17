@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>HOMECRAFT Seller Centre</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+    .hover-bisque:hover {
+      background-color: bisque;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-brown-600 text-white p-4 flex justify-between items-center" style="background-color: #8B4513;">
+      <div class="text-lg font-semibold">HOMECRAFT Seller Centre</div>
+      <div class="flex items-center space-x-4">
+          <i class="fas fa-th-large"></i>
+          <i class="fas fa-bell"></i>
+        <div class="flex items-center space-x-2">
+          <img src="https://storage.googleapis.com/a1aa/image/ZS0OniuKrjofFqHZzqoIx50gWB7j7ZHyOU9a2K4JyDIF637JA.jpg"
+               alt="User profile picture" class="rounded-full w-10 h-10">
+          <span>Kelompok 10</span>
+        </div>
+      </div>
+    </header>  
+
+  <!-- Main Layout -->
+  <div class="flex">
+    <!-- Sidebar -->
+    <aside class="bg-white w-64 p-4">
+      <nav class="space-y-4">
+        <div>
+          <h2 class="font-semibold mb-2 text-brown-600">
+            <i class="fas fa-shopping-cart mr-2 text-brown-600"></i>Pesanan
+          </h2>
+          <ul class="space-y-1">
+            <li><a href="pesanansaya.html" class="block hover-bisque p-2 rounded">Pesanan Saya</a></li>
+            <li><a href="#" class="block hover-bisque p-2 rounded">Kirimkan Pesanan</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-semibold mb-2 text-brown-600">
+            <i class="fas fa-box mr-2 text-brown-600"></i>Produk
+          </h2>
+          <ul class="space-y-1">
+            <li><a href="produkseller.html" class="block hover-bisque p-2 rounded">Produk Saya</a></li>
+            <li><a href="add_product.html" class="block hover-bisque p-2 rounded">Tambah Produk Baru</a></li>
+            <li><a href="#" class="block hover-bisque p-2 rounded">Pelanggaran Saya</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-semibold mb-2 text-brown-600">
+            <i class="fas fa-wallet mr-2 text-brown-600"></i>Keuangan
+          </h2>
+          <ul class="space-y-1">
+            <li><a href="penghasilansaya.html" class="block hover-bisque p-2 rounded">Penghasilan Saya</a></li>
+            <li><a href="#" class="block hover-bisque p-2 rounded">Saldo Saya</a></li>
+            <li><a href="#" class="block hover-bisque p-2 rounded">Rekening Saya</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-semibold mb-2 text-brown-600">
+            <i class="fas fa-store mr-2 text-brown-600"></i>Data Toko Saya
+          </h2>
+          <ul class="space-y-1">
+            <li><a href="#" class="block hover-bisque p-2 rounded">Data Toko Saya</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-semibold mb-2 text-brown-600">
+            <i class="fas fa-tools mr-2 text-brown-600"></i>Toko
+          </h2>
+          <ul class="space-y-1">
+            <li><a href="#" class="block hover-bisque p-2 rounded">Dekorasi Toko</a></li>
+            <li><a href="#" class="block hover-bisque p-2 rounded">Pengaturan Toko</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 p-6">
+      <!-- Grid Container -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+        <!-- Baris 1: Data Toko Saya dan Yang Perlu Dilakukan -->
+        <div class="bg-white shadow-md rounded p-4">
+          <h3 class="font-bold mb-2">Data Toko Saya <span class="text-gray-500">(update: 15:20)</span></h3>
+          <p class="text-gray-500 mb-4">Lihat perkembangan toko Anda</p>
+          <p class="font-bold text-lg">Penjualan</p>
+          <p class="text-2xl mb-4">Rp 12.560.877,99</p>
+          <div>
+            <canvas id="salesChart" class="rounded mb-4 w-60 h-60"></canvas>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <p class="font-bold text-lg">Total Pengunjung</p>
+              <p class="text-2xl">4454</p>
+            </div>
+            <div>
+              <p class="font-bold text-lg">Produk Dilihat</p>
+              <p class="text-2xl">18565</p>
+            </div>
+            <div>
+              <p class="font-bold text-lg">Pesanan</p>
+              <p class="text-2xl">2000</p>
+            </div>
+            <div>
+              <p class="font-bold text-lg">Tingkat Keuntungan</p>
+              <p class="text-2xl">50.7%</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Baris 2: Yang Perlu Dilakukan -->
+        <div class="bg-white shadow-md rounded p-4">
+          <h3 class="font-bold mb-2">Yang Perlu Dilakukan</h3>
+          <p class="text-gray-500 mb-4">Hal-Hal Yang Harus Kamu Dilakukan</p>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <p class="font-bold text-2xl">596</p>
+              <p class="text-gray-500">Perlu Dikirim</p>
+            </div>
+            <div>
+              <p class="font-bold text-2xl">596</p>
+              <p class="text-gray-500">Menunggu Konfirmasi Pembayaran</p>
+            </div>
+            <div>
+              <p class="font-bold text-2xl">5</p>
+              <p class="text-gray-500">Menunggu Pesan Diterima</p>
+            </div>
+            <div>
+              <p class="font-bold text-2xl">3</p>
+              <p class="text-gray-500">Produk Stok Habis</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Produk Saya -->
+        <div class="bg-white shadow-md rounded p-4">
+          <h3 class="font-bold mb-2">Produk Saya</h3>
+          <p class="text-gray-500 mb-4">Lihat tinjauan perkembangan toko</p>
+          <div class="grid grid-cols-3 gap-4">
+            <img src="./assets/mejapendek.jpg" class="rounded w-40 h-40" alt="Produk"/>
+            <img src="./assets/mejatamu.jpg" class="rounded w-40 h-40" alt="Produk"/>
+            <img src="./assets/lampu.jpg" class="rounded w-40 h-40" alt="Produk"/>
+          </div>
+        </div>
+
+        <!-- Pesan -->
+        <div class="bg-white shadow-md rounded p-4">
+          <h3 class="font-bold mb-2">Pesan</h3>
+          <p class="text-gray-700 mt-4">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et non, culpa nesciunt ipsam quidem similique velit, porro facere est pariatur, cupiditate delectus cum? Nisi aspernatur magnam porro in rerum aliquid! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem nam magnam harum, hic blanditiis in vitae, exercitationem ad nobis voluptate veritatis quod assumenda unde quo provident cumque similique ipsa nostrum?
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('salesChart').getContext('2d');
+    const salesChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Agustus', 'September', 'Oktober'],
+        datasets: [
+          {
+            label: 'Produk Dibeli',
+            data: [300, 100, 200],
+            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+          },
+          {
+            label: 'Keuntungan (x1000)',
+            data: [1000, 600, 800],
+            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Profile Saya</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            overflow: hidden;
+            margin-top: 6rem;
+        }
+
+        .profile-card .header {
+            background: #a0522d;
+            padding: 4rem 1rem 3rem;
+            position: relative;
+        }
+
+        .profile-card .header .profile-img {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 4px solid white;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        .profile-card h2 {
+            margin: 3.5rem 0 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .profile-card p {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 1rem 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            padding: 1rem 0;
+        }
+
+        .stats div {
+            text-align: center;
+        }
+
+        .stats div span {
+            display: block;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #a0522d;
+        }
+
+        .stats div small {
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        .Edit button {
+            background-color: #a0522d;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .Edit button:hover {
+            background-color: bisque;
+        }
+
+        .Edit {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            z-index: 10;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 0.25rem;
+            overflow: hidden;
+        }
+
+        .dropdown.active {
+            display: block;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            color: black;
+            transition: background 0.2s;
+        }
+
+        .dropdown a:hover {
+            background: #f3f3f3;
+        }
+    </style>
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById("profileDropdown");
+            dropdown.classList.toggle("active");
+        }
+
+        document.addEventListener("click", function (event) {
+            const dropdown = document.getElementById("profileDropdown");
+            const profileIcon = document.getElementById("profileIcon");
+            if (!dropdown.contains(event.target) && !profileIcon.contains(event.target)) {
+                dropdown.classList.remove("active");
+            }
+        });
+    </script>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="bg-amber-800 p-4 flex items-center justify-between fixed top-0 left-0 w-full z-50">
+        <a href="beranda.html" class="text-white text-2xl font-bold">HOMECRAFT</a>
+        <div class="flex items-center space-x-6 text-white">
+            <i class="fas fa-search cursor-pointer"></i>
+            <i class="fas fa-bell relative">
+                <span class="absolute -top-1 -right-1 flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+                </span>
+            </i>
+            <a href="keranjang.html"><i class="fas fa-shopping-cart"></i></a>
+            <div class="relative">
+                <i id="profileIcon" class="fas fa-user-circle cursor-pointer" onclick="toggleDropdown()"></i>
+                <div id="profileDropdown" class="dropdown">
+                    <a href="profilesaya.html">Profile Saya</a>
+                    <a href="menu.html">Pesanan Saya</a>
+                    <a href="logout.html">Keluar</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Profile Card -->
+    <div class="profile-card">
+        <!-- Header Section -->
+        <div class="header">
+            <img src="./assets/profile.jpg" alt="Profile Picture" class="profile-img">
+        </div>
+
+        <!-- Profile Content -->
+        <h2>Aldorandy</h2>
+        <p>Bandung, Indonesia</p>
+        <p>Web Producer · Web Specialist<br>Columbia University · New York</p>
+
+        <!-- Stats Section -->
+        <div class="stats">
+            <div>
+                <span>65</span>
+                <small>Pengikut</small>
+            </div>
+            <div>
+                <span>43</span>
+                <small>Mengikuti</small>
+            </div>
+        </div>
+
+        <!-- Edit Button -->
+        <div class="Edit">
+            <a href="editprofile.html">
+                <button>Edit Profile</button>
+            </a>
+        </div>        
+    </div>
+</body>
+</html>

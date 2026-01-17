@@ -1,0 +1,107 @@
+<html>
+<head>
+    <title>SpaceWood Payment Confirmation</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Times New Roman';
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to bottom right, #dcbf9f, #7c4a32);
+
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45%; /* Lebihkan lebar kontainer */
+            max-width: 1000px; /* Memperbesar kontainer */
+            padding: 20px; /* Menambahkan padding agar kontainer lebih lega */
+            background: linear-gradient(to bottom right, #dcbf9f, #7c4a32);
+            border-radius: 10px; /* Membuat sudut kontainer melengkung */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Menambahkan bayangan di sekitar kontainer */
+            margin-left: 20px; /* Memindahkan kontainer sedikit ke kiri */
+        }
+        .logo {
+            flex: 1;
+            text-align: center;
+            margin-right: 5px; /* Menambahkan jarak sedikit ke kanan agar lebih dekat dengan kontainer */
+        }
+        .logo img {
+            width: 350px; /* Memperbesar ukuran logo */
+            height: auto;
+            border-radius: 5px;
+        }
+        .confirmation-box {
+            flex: 2; /* Membuat kotak konfirmasi lebih besar */
+            border: 1px solid #000;
+            border-radius: 10px;
+            padding: 30px; /* Menambahkan padding agar lebih lega */
+            text-align: center;
+            position: relative;
+            background: #fdfdfd; /* Latar belakang kotak konfirmasi lebih terang */
+        }
+        .profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .profile img {
+            border-radius: 50%;
+            width: 50px; /* Memperbesar gambar profil */
+            height: 50px; /* Memperbesar gambar profil */
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        .profile-name {
+            font-weight: bold;
+            margin-left: 35px; /* Mengurangi margin agar nama lebih dekat dengan gambar profil */
+        }
+        .message {
+            margin: 20px 0;
+        }
+        .checkmark img {
+            width: 150px; /* Memperbesar ukuran ikon centang */
+            height: auto;
+        }
+        .button {
+            background-color: #c97b4a;
+            color: #fff;
+            border: none;
+            padding: 15px 30px; /* Memperbesar ukuran tombol */
+            border-radius: 25px; /* Menambahkan kelengkungan pada tombol */
+            cursor: pointer;
+            font-size: 18px; /* Memperbesar ukuran teks tombol */
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Efek transisi */
+        }
+        .button:hover {
+            background-color: bisque; /* Mengubah warna latar belakang saat hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <img alt="Homecraft logo with a tree ring and house icon" height="150" src="./assets/logohomecraft.jpg"/>
+    </div>
+    <div class="container">
+        <div class="confirmation-box">
+            <div class="profile">
+                <img alt="Profile picture of the user" height="50" src="./assets/profile.jpg "/>
+                <span class="profile-name">Aldorandy Septian</span>
+            </div>
+            <div class="checkmark">
+                <img alt="centang" height="100" src="./assets/centang.jpg" width="150"/>
+            </div>
+            <div class="message">
+                <p>Anda Telah Melakukan Pembayaran</p>
+                <p>Terimakasih sudah berbelanja di toko kami.</p>
+            </div>
+            <button class="button">Kembali</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Penjual</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #f3f4f6, #e5e7eb);
+      font-family: 'Arial', sans-serif;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      z-index: 10;
+      background: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 0.25rem;
+      overflow: hidden;
+    }
+
+    .dropdown.active {
+      display: block;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      color: black;
+      transition: background 0.2s;
+    }
+
+    .dropdown a:hover {
+      background: #f3f3f3;
+    }
+
+    header {
+      background: #1f2937;
+      color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .chat-container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .messages {
+      height: 500px;
+      overflow-y: auto;
+      padding-right: 10px;
+      scrollbar-width: thin;
+    }
+
+    .messages::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .messages::-webkit-scrollbar-thumb {
+      background: #d1d5db;
+      border-radius: 10px;
+    }
+
+    .message {
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      max-width: 70%;
+      word-wrap: break-word;
+    }
+
+    .message.admin {
+      background: #F4A460;
+      color: #1f2937;
+    }
+
+    .message.user {
+      background: #1f2937;
+      color: white;
+      align-self: flex-end;
+    }
+
+    .input-container input {
+      border: 1px solid #d1d5db;
+      padding: 10px;
+      border-radius: 8px;
+      outline: none;
+      width: 100%;
+    }
+
+    .input-container button {
+      background: #1f2937;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .input-container button:hover {
+      background: #4b5563;
+    }
+  </style>
+</head>
+<body class="bg-white">
+  <!-- Header -->
+  <header class="bg-amber-800 p-4 flex items-center justify-between fixed top-0 left-0 w-full z-50">
+      <a href="beranda.html" class="text-white text-2xl font-bold">HOMECRAFT</a>
+      <div class="flex items-center space-x-6 text-white">
+          <i class="fas fa-search cursor-pointer"></i>
+          <i class="fas fa-bell relative text-white">
+              <span class="absolute -top-2 -right-2 flex h-4 w-4">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-4 w-4 bg-blue-500"></span>
+              </span>
+          </i>
+          <a href="keranjang.html"><i class="fas fa-shopping-cart"></i></a>
+          <div class="relative">
+              <i id="profileIcon" class="fas fa-user-circle cursor-pointer" onclick="toggleDropdown()"></i>
+              <div id="profileDropdown" class="dropdown">
+                  <a href="profilesaya.html">Profile Saya</a>
+                  <a href="menu.html">Pesanan Saya</a>
+                  <a href="logout.html">Keluar</a>
+              </div>
+          </div>
+      </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="flex w-4/5 max-w-5xl mx-auto mt-20 space-x-4">
+    <!-- Sidebar Chat List -->
+    <div class="w-1/3 bg-white rounded-lg shadow-md">
+      <div class="p-4 border-b font-bold text-lg">Daftar Chat</div>
+      <ul id="chatList" class="p-4 space-y-4">
+        <li class="cursor-pointer flex items-center" onclick="selectChat('Toko Jaya Abadi Furniture')">
+          <img src="assets/profil1.jpeg" alt="" class="w-10 h-10 rounded-full mr-3">
+          <span>Toko Jaya Abadi Furniture</span>
+        </li>
+        <li class="cursor-pointer flex items-center" onclick="selectChat('Toko Meubel Sejahtera')">
+          <img src="assets/profil2.jpeg" alt="" class="w-10 h-10 rounded-full mr-3">
+          <span>Toko Meubel Sejahtera</span>
+        </li>
+        <li class="cursor-pointer flex items-center" onclick="selectChat('Toko Kayu Mandiri')">
+          <img src="assets/profil3.jpeg" alt="" class="w-10 h-10 rounded-full mr-3">
+          <span>Toko Kayu Mandiri</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Chat Container -->
+    <div class="chat-container w-2/3 p-6">
+      <div class="header flex items-center border-b pb-4 mb-4">
+        <img
+          alt="Profile picture of the store representative"
+          src="assets/profil1.jpeg"
+          id="chatProfile"
+          class="rounded-full w-12 h-12 mr-4"
+        />
+        <div id="chatTitle" class="title text-lg font-bold flex-grow">Toko Jaya Abadi Furniture</div>
+      </div>
+
+      <div class="messages flex flex-col" id="chatMessages">
+        <div class="message admin">Terimakasih sudah menghubungi Toko Jaya Abadi Furniture, ada yang bisa kami bantu?</div>
+      </div>
+
+      <div class="input-container flex items-center mt-4">
+        <input type="text" id="userInput" placeholder="Ketik pesan..." class="mr-4" />
+        <button onclick="sendMessage()">Kirim Pesan</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const chats = {
+      'Toko Jaya Abadi Furniture': [
+        'Terimakasih sudah menghubungi Toko Jaya Abadi Furniture, ada yang bisa kami bantu?'
+      ],
+      'Toko Meubel Sejahtera': [
+        'Selamat datang di Toko Meubel Sejahtera, bagaimana kami bisa membantu Anda?'
+      ],
+      'Toko Kayu Mandiri': [
+        'Halo! Toko Kayu Mandiri siap membantu kebutuhan Anda.'
+      ]
+    };
+
+    const profiles = {
+      'Toko Jaya Abadi Furniture': 'assets/profil1.jpeg',
+      'Toko Meubel Sejahtera': 'assets/profil2.jpeg',
+      'Toko Kayu Mandiri': 'assets/profil3.jpeg'
+    };
+
+    function selectChat(storeName) {
+      const chatTitle = document.getElementById('chatTitle');
+      const chatMessages = document.getElementById('chatMessages');
+      const chatProfile = document.getElementById('chatProfile');
+
+      chatTitle.textContent = storeName;
+      chatProfile.src = profiles[storeName];
+      chatMessages.innerHTML = '';
+
+      chats[storeName].forEach(message => {
+        const adminMessageDiv = document.createElement('div');
+        adminMessageDiv.classList.add('message', 'admin');
+        adminMessageDiv.textContent = message;
+        chatMessages.appendChild(adminMessageDiv);
+      });
+    }
+
+    function sendMessage() {
+      const inputField = document.getElementById('userInput');
+      const chatMessages = document.getElementById('chatMessages');
+      const chatTitle = document.getElementById('chatTitle').textContent;
+
+      const userMessage = inputField.value.trim();
+      if (userMessage) {
+        const userMessageDiv = document.createElement('div');
+        userMessageDiv.classList.add('message', 'user');
+        userMessageDiv.textContent = userMessage;
+        chatMessages.appendChild(userMessageDiv);
+
+        inputField.value = '';
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        setTimeout(() => {
+          const adminMessageDiv = document.createElement('div');
+          adminMessageDiv.classList.add('message', 'admin');
+          adminMessageDiv.textContent = 'Baik pak, mohon ditunggu ya untuk pesanannya!';
+          chatMessages.appendChild(adminMessageDiv);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+
+          chats[chatTitle].push('Baik pak, mohon ditunggu ya untuk pesanannya!');
+        }, 1000);
+      }
+    }
+  </script>
+</body>
+</html>

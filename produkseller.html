@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOMECRAFT Seller Centre</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        .hover-bisque:hover {
+            background-color: bisque !important;
+        }
+        .active {
+            background-color: bisque !important;
+            font-weight: bold;
+            color: #8B4513 !important;
+            border-left: 4px solid #8B4513;
+            padding-left: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+
+    <div class="flex flex-col min-h-screen">
+        <!-- Header -->
+        <header class="bg-brown-600 text-white p-4 flex justify-between items-center" style="background-color: #8B4513;">
+            <button onclick="window.location.href='seller.html'" class="text-lg font-semibold">HOMECRAFT Seller Centre</button>
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                    <img src="https://storage.googleapis.com/a1aa/image/ZS0OniuKrjofFqHZzqoIx50gWB7j7ZHyOU9a2K4JyDIF637JA.jpg" 
+                         alt="User profile picture" 
+                         class="rounded-full w-10 h-10" />
+                    <span>nama.id</span>
+                </div>
+                <i class="fas fa-th-large"></i>
+                <i class="fas fa-bell"></i>
+                <button class="px-4 py-2 rounded text-white hover-bisque" style="background-color: #8B4513;">Kembali ke Akun Pembeli</button>
+            </div>
+        </header>
+
+        <div class="flex flex-1">
+            <!-- Sidebar -->
+            <aside class="bg-white w-64 p-4 shadow">
+                <nav class="space-y-4">
+                    <!-- Pesanan -->
+                    <div>
+                        <h2 class="font-semibold mb-2 text-brown-600">
+                            <i class="fas fa-shopping-cart mr-2 text-brown-600"></i>Pesanan
+                        </h2>
+                        <ul class="space-y-1">
+                            <li class="hover-bisque p-2 rounded cursor-pointer">
+                                <a href="pesanansaya.html" class="block">Tambah Produk Baru</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Produk -->
+                    <div>
+                        <h2 class="font-semibold mb-2 text-brown-600">
+                            <i class="fas fa-box mr-2 text-brown-600"></i>Produk
+                        </h2>
+                        <ul class="space-y-1">
+                            <li class="active cursor-pointer">Produk Saya</li>
+                            <li class="hover-bisque p-2 rounded cursor-pointer">
+                                <a href="add_product.html" class="block">Tambah Produk Baru</a>
+                            </li>
+                            <li class="hover-bisque p-2 rounded cursor-pointer">Pelanggaran Saya</li>
+                        </ul>
+                    </div>
+                    <!-- Keuangan -->
+                    <div>
+                        <h2 class="font-semibold mb-2 text-brown-600">
+                            <i class="fas fa-wallet mr-2 text-brown-600"></i>Keuangan
+                        </h2>
+                        <ul class="space-y-1">
+                            <li><a href="penghasilansaya.html" class="block hover-bisque p-2 rounded">Penghasilan Saya</a></li>
+                            <li><a href="saldosaya.html" class="block hover-bisque p-2 rounded cursor-pointer">Saldo Saya</a></li>
+                            <li class="block hover-bisque p-2 rounded cursor-pointer">Rekening Saya</li>
+                        </ul>
+                    </div>
+                    <!-- Data Toko Saya -->
+                    <div>
+                        <h2 class="font-semibold mb-2 text-brown-600">
+                            <i class="fas fa-store mr-2 text-brown-600"></i>Data Toko Saya
+                        </h2>
+                        <ul class="space-y-1">
+                            <li class="hover-bisque p-2 rounded cursor-pointer">Data Toko Saya</li>
+                        </ul>
+                    </div>
+                    <!-- Toko -->
+                    <div>
+                        <h2 class="font-semibold mb-2 text-brown-600">
+                            <i class="fas fa-tools mr-2 text-brown-600"></i>Toko
+                        </h2>
+                        <ul class="space-y-1">
+                            <li class="hover-bisque p-2 rounded cursor-pointer">Dekorasi Toko</li>
+                            <li class="hover-bisque p-2 rounded cursor-pointer">Pengaturan Toko</li>
+                        </ul>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="flex-1 p-6">
+                <!-- Header Konten Utama -->
+                <div class="flex justify-between items-center mb-4">
+                    <h1 class="text-2xl font-semibold text-brown-600">Produk Saya</h1>
+                    <a href="add_product.html" class="px-4 py-2 rounded text-white hover-bisque" style="background-color: #8B4513;">+ Tambah Produk Baru</a>
+                </div>
+
+                <!-- Tabel Produk -->
+                <div class="bg-white p-4 rounded shadow">
+                    <div class="mb-4 text-brown-600">6 Produk</div>
+                    <table class="w-full table-auto">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="border p-2">Produk</th>
+                                <th class="border p-2">Harga</th>
+                                <th class="border p-2">Stok</th>
+                                <th class="border p-2">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Produk 1 -->
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="p-2 flex items-center">
+                                    <img src="assets/mejatamu.jpg" 
+                                         alt="Meja estetik 1945" 
+                                         class="w-12 h-12 mr-4 rounded" />
+                                    Meja estetik 1945
+                                </td>
+                                <td class="p-2 text-center">Rp400.000</td>
+                                <td class="p-2 text-center">5</td>
+                                <td class="p-2 text-center space-x-2">
+                                    <a href="#" class="text-blue-600 hover:underline">Edit</a>
+                                    <a href="#" class="text-red-600 hover:underline">Hapus</a>
+                                </td>
+                            </tr>
+                            <!-- Produk 2 -->
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="p-2 flex items-center">
+                                    <img src="assets/raklaci.jpg" 
+                                         alt="Satu set" 
+                                         class="w-12 h-12 mr-4 rounded" />
+                                    Satu set
+                                </td>
+                                <td class="p-2 text-center">Rp2.000.000</td>
+                                <td class="p-2 text-center">2</td>
+                                <td class="p-2 text-center space-x-2">
+                                    <a href="#" class="text-blue-600 hover:underline">Edit</a>
+                                    <a href="#" class="text-red-600 hover:underline">Hapus</a>
+                                </td>
+                            </tr>
+                            <!-- Produk 3 -->
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="p-2 flex items-center">
+                                    <img src="assets/lemari.jpg" 
+                                         alt="Lemari Putih Polos" 
+                                         class="w-12 h-12 mr-4 rounded" />
+                                    Lemari Putih Polos
+                                </td>
+                                <td class="p-2 text-center">Rp3.000.000</td>
+                                <td class="p-2 text-center">4</td>
+                                <td class="p-2 text-center space-x-2">
+                                    <a href="#" class="text-blue-600 hover:underline">Edit</a>
+                                    <a href="#" class="text-red-600 hover:underline">Hapus</a>
+                                </td>
+                            </tr>
+                            <!-- Produk 4 -->
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="p-2 flex items-center">
+                                    <img src="assets/lacikecil.jpg" 
+                                         alt="Meja Laci" 
+                                         class="w-12 h-12 mr-4 rounded" />
+                                    Meja Laci
+                                </td>
+                                <td class="p-2 text-center">Rp4.500.000</td>
+                                <td class="p-2 text-center">4</td>
+                                <td class="p-2 text-center space-x-2">
+                                    <a href="#" class="text-blue-600 hover:underline">Edit</a>
+                                    <a href="#" class="text-red-600 hover:underline">Hapus</a>
+                                </td>
+                            </tr>
+                            <!-- Produk 5 -->
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="p-2 flex items-center">
+                                    <img src="assets/lemari.jpg" 
+                                         alt="Lemari Putih Polos 2 Pintu" 
+                                         class="w-12 h-12 mr-4 rounded" />
+                                    Lemari Putih Polos 2 Pintu
+                                </td>
+                                <td class="p-2 text-center">Rp4.500.000</td>
+                                <td class="p-2 text-center">8</td>
+                                <td class="p-2 text-center space-x-2">
+                                    <a href="#" class="text-blue-600 hover:underline">Edit</a>
+                                    <a href="#" class="text-red-600 hover:underline">Hapus</a>
+                                </td>
+                            </tr>
+                            <!-- Produk 6 -->
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="p-2 flex items-center">
+                                    <img src="assets/mejatamu.jpg" 
+                                         alt="meja kayu" 
+                                         class="w-12 h-12 mr-4 rounded" />
+                                    meja kayu
+                                </td>
+                                <td class="p-2 text-center">Rp700</td>
+                                <td class="p-2 text-center">10</td>
+                                <td class="p-2 text-center space-x-2">
+                                    <a href="#" class="text-blue-600 hover:underline">Edit</a>
+                                    <a href="#" class="text-red-600 hover:underline">Hapus</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+</body>
+</html>

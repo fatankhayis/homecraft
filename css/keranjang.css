@@ -1,0 +1,200 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* Styling untuk Navbar */
+.navbar {
+    background-color: #a0522d; /* Warna coklat navbar */
+    padding: 20px 40px; /* Menambah padding untuk memperbesar navbar (top-bottom, left-right) */
+    display: flex; /* Menggunakan flexbox untuk tata letak */
+    align-items: center; /* Vertikal align navbar items */
+    justify-content: space-between; /* Menyebarkan elemen di navbar */
+    z-index: 1000; /* Memastikan navbar berada di atas konten lainnya */
+    position: fixed; /* Menetapkan navbar tetap di atas halaman */
+    top: 0; /* Menempatkan navbar di bagian atas halaman */
+    left: 0;
+    width: 100%; /* Lebar navbar memenuhi seluruh layar */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Menambahkan shadow pada navbar untuk efek visual */
+    height: 80px; /* Menambah tinggi navbar agar lebih besar */
+  }
+  
+/* Logo Styling */
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #964B00; /* Warna coklat */
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Mengatur logo, pencarian, dan profil pada posisi yang tepat */
+}
+/* Styling untuk Logo */
+.navbar .logo h1 {
+    font-size: 30px; /* Ukuran font logo */
+    color: white;
+    font-weight: bold;
+    margin-left: 20px; /* Menambahkan jarak kiri untuk memindahkan logo ke kanan */
+  }
+  
+  /* Styling untuk Search Bar */
+  .search-container {
+    display: flex;
+    align-items: center;
+    width: 60%; /* Mengatur lebar search bar */
+  }
+  
+  .search-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+  }
+  
+  .search-bar {
+    padding: 12px; /* Menambah padding untuk membuat input lebih besar */
+    border-radius: 10px;
+    width: 100%;
+    font-size: 16px; /* Ukuran font pada input */
+  }
+  
+  /* Menambahkan ikon pencarian di dalam container pencarian */
+  .search-icon {
+    font-size: 20px; /* Ukuran ikon pencarian */
+    color: black; /* Warna ikon pencarian */
+    margin-left: 10px; /* Memberikan jarak antara input dan ikon */
+  }
+  
+.user-profile {
+    display: flex;
+    align-items: center; /* Mengatur profil user secara horizontal */
+    gap: 10px;
+    position: relative; /* Menambahkan posisi relatif untuk kontrol tata letak */
+    margin-left: 25px; /* Memberikan jarak kiri agar sedikit masuk ke kiri */
+  }
+  
+  .user-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Membuat gambar profil berbentuk bulat */
+    border: 2px solid white; /* Border putih di sekitar gambar profil */
+  }
+  
+  .user-profile span {
+    font-size: 16px;
+    color: white;
+    font-weight: 500;
+  }
+
+/* Judul Keranjang Belanja */
+h2 {
+    margin-top: 20px; /* Mengurangi jarak antara detail produk dan gambar */
+    display: flex; /* Flexbox untuk menyusun foto produk dan informasi produk */
+    align-items: flex-start; /* Menyelaraskan item di atas */
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+/* Menambahkan jarak antara header dan gambar produk */
+.product-img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin-top: 20px; /* Memberikan jarak atas pada gambar produk */
+}
+
+.product-details h3 {
+    margin: 0;
+}
+
+.price {
+    font-size: 20px;
+    color: #964B00;
+}
+
+footer {
+    text-align: center;
+}
+
+/* Tombol "Kembali" di pojok kanan bawah */
+footer .btn-secondary {
+    position: fixed; /* Tombol tetap di pojok kanan bawah */
+    bottom: 20px; /* Jarak dari bagian bawah */
+    right: 20px; /* Jarak dari bagian kanan */
+    background-color: #964B00; /* Warna tombol */
+    color: #fff;
+    border: none;
+    padding: 10px 20px; /* Ukuran tombol */
+    border-radius: 4px; /* Membuat sudut tombol melengkung */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Memberikan bayangan */
+    z-index: 1000; /* Memastikan tombol berada di atas elemen lainnya */
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Efek hover untuk tombol "Kembali" */
+footer .btn-secondary:hover {
+    background-color: #7d3b00; /* Warna lebih gelap saat hover */
+}
+
+/* Navbar Styling - Menambahkan untuk Flexbox */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Memastikan elemen berada di ujung kiri dan kanan */
+    align-items: center; /* Menjaga elemen berada pada posisi tengah vertikal */
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.search-bar-container {
+    flex-grow: 1;
+    margin: 0 20px;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    border: 2px solid white;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.profile-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}

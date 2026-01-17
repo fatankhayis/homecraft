@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>HomeCraft - Daftar</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body style="background-color: #666666;">
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100" style="flex-direction: row-reverse;">
+                <!-- Form Daftar Section -->
+                <form class="login100-form validate-form" id="registerForm">
+                    <span class="login100-form-title p-b-43">
+                        Daftar sebagai Pembeli
+                    </span>
+                    <div class="wrap-input100 validate-input" data-validate="Username is required">
+                        <input class="input100" type="text" name="username" id="username">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">Username</span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+                        <input class="input100" type="password" name="password" id="password">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">Password</span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Password confirmation is required">
+                        <input class="input100" type="password" name="confirm_password" id="confirm_password">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">Konfirmasi Password</span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Email is required">
+                        <input class="input100" type="email" name="email" id="email">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">Email</span>
+                    </div>
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" type="submit" id="submitBtn" disabled>
+                            Daftar
+                        </button>
+                    </div>
+                    <div class="text-center p-t-46 p-b-20">
+                        <span class="txt2">Sudah punya akun?</span>
+                        <a href="halamanlogin.html" class="txt1">Login di sini</a>.<br>
+                    </div>
+                </form>
+                <!-- Background Image Section -->
+                <div class="login100-more" style="background-image: url('assets/kayu12.jpg');"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Section -->
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    
+    <script>
+        // Fungsi untuk memeriksa apakah input memiliki nilai dan menambahkan kelas has-val
+        function addHasValClass() {
+            var inputs = document.querySelectorAll('.input100');
+
+            inputs.forEach(function(input) {
+                if (input.value.trim() !== "") {
+                    input.classList.add('has-val');
+                } else {
+                    input.classList.remove('has-val');
+                }
+            });
+        }
+
+        // Fungsi untuk memeriksa status form dan mengaktifkan tombol submit
+        function checkForm() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirm_password").value;
+            var email = document.getElementById("email").value;
+
+            // Enable or disable the submit button based on the form's validity
+            if (username && password && confirmPassword && email) {
+                document.getElementById("submitBtn").disabled = false; // Enable button
+            } else {
+                document.getElementById("submitBtn").disabled = true; // Disable button
+            }
+        }
+
+        // Menambahkan event listener pada setiap input
+        document.getElementById("username").addEventListener("input", function() {
+            addHasValClass();
+            checkForm();
+        });
+        document.getElementById("password").addEventListener("input", function() {
+            addHasValClass();
+            checkForm();
+        });
+        document.getElementById("confirm_password").addEventListener("input", function() {
+            addHasValClass();
+            checkForm();
+        });
+        document.getElementById("email").addEventListener("input", function() {
+            addHasValClass();
+            checkForm();
+        });
+        document.getElementById("registerForm").addEventListener("submit", function(event) {
+            // Mencegah form dari pengiriman standar
+            event.preventDefault();
+
+            // Periksa apakah password dan konfirmasi password cocok
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirm_password").value;
+            if (password !== confirmPassword) {
+                alert("Password dan Konfirmasi Password tidak cocok!");
+                return;
+            }
+
+            // Jika valid, lakukan redirect ke halaman login
+            window.location.href = "halamanlogin.html";
+        });
+
+    </script>
+</body>
+</html>

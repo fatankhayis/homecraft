@@ -1,0 +1,318 @@
+/* Styling untuk Navbar */
+.navbar {
+  background-color: #a0522d; /* Warna coklat navbar */
+  padding: 20px 40px; /* Menambah padding untuk memperbesar navbar (top-bottom, left-right) */
+  display: flex; /* Menggunakan flexbox untuk tata letak */
+  align-items: center; /* Vertikal align navbar items */
+  justify-content: space-between; /* Menyebarkan elemen di navbar */
+  z-index: 1000; /* Memastikan navbar berada di atas konten lainnya */
+  position: fixed; /* Menetapkan navbar tetap di atas halaman */
+  top: 0; /* Menempatkan navbar di bagian atas halaman */
+  left: 0;
+  width: 100%; /* Lebar navbar memenuhi seluruh layar */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Menambahkan shadow pada navbar untuk efek visual */
+  height: 80px; /* Menambah tinggi navbar agar lebih besar */
+}
+
+/* Styling untuk Detail Produk Section */
+.detail-section {
+  margin-top: 20px; /* Memberikan jarak antara navbar dan section detail produk */
+  padding: 20px;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between; /* Membuat tulisan "Detail Produk" dan profil disejajarkan */
+  align-items: center;
+}
+
+.detail-header h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* Styling untuk Profil Pengguna */
+.profile-info {
+  display: flex;
+  align-items: center;
+}
+
+.profile-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; /* Membuat gambar profil berbentuk lingkaran */
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.profile-info span {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Styling untuk Logo */
+.navbar .logo h1 {
+  font-size: 30px; /* Ukuran font logo */
+  color: white;
+  font-weight: bold;
+  margin-left: 20px; /* Menambahkan jarak kiri untuk memindahkan logo ke kanan */
+}
+
+/* Styling untuk Search Bar */
+.search-container {
+  display: flex;
+  align-items: center;
+  width: 60%; /* Mengatur lebar search bar */
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.search-bar {
+  padding: 12px; /* Menambah padding untuk membuat input lebih besar */
+  border-radius: 10px;
+  width: 100%;
+  font-size: 16px; /* Ukuran font pada input */
+}
+
+/* Menambahkan ikon pencarian di dalam container pencarian */
+.search-icon {
+  font-size: 20px; /* Ukuran ikon pencarian */
+  color: black; /* Warna ikon pencarian */
+  margin-left: 10px; /* Memberikan jarak antara input dan ikon */
+}
+
+/* Styling untuk User Profile */
+.user-profile {
+  display: flex;
+  align-items: center; /* Mengatur profil user secara horizontal */
+  gap: 10px;
+  position: relative; /* Menambahkan posisi relatif untuk kontrol tata letak */
+  margin-left: 25px; /* Memberikan jarak kiri agar sedikit masuk ke kiri */
+}
+
+.user-profile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Membuat gambar profil berbentuk bulat */
+  border: 2px solid white; /* Border putih di sekitar gambar profil */
+}
+
+.user-profile span {
+  font-size: 16px;
+  color: white;
+  font-weight: 500;
+}
+
+
+/* Styling untuk Foto Produk */
+.product-detail {
+  margin-top: 20px; /* Mengurangi jarak antara detail produk dan gambar */
+  display: flex; /* Flexbox untuk menyusun foto produk dan informasi produk */
+  align-items: flex-start; /* Menyelaraskan item di atas */
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* Gambar produk */
+.product-image img {
+  width: 80%; /* Mengatur lebar gambar menjadi 80% dari lebar kontainer */
+  max-width: 500px; /* Ukuran maksimal gambar agar tidak terlalu besar */
+  height: auto; /* Menjaga proporsi gambar tetap terjaga */
+  margin-left: auto; /* Memastikan gambar tetap di tengah */
+  margin-right: auto; /* Memastikan gambar tetap di tengah */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Efek bayangan yang lebih halus */
+  border-radius: 5px;
+}
+
+.product-info {
+  margin-left: 20px; /* Menambahkan jarak antara gambar dan informasi produk */
+  flex: 2; /* Memberikan lebih banyak ruang untuk informasi produk */
+  max-width: 600px; /* Lebar maksimal untuk informasi produk */
+  margin-right: 10px; /* Bergeser sedikit ke kiri untuk sejajar dengan foto produk */
+}
+
+
+.product-info h2 {
+  font-size: 28px;
+  color: #333;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.product-info .rating {
+  font-size: 18px;
+  color: #888;
+}
+
+.product-info .location {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Styling untuk harga produk */
+.product-info .price {
+  font-size: 22px;
+  color: #333; /* Warna hitam untuk harga */
+}
+
+/* Styling untuk ikon currency dollar menjadi hitam */
+.bi-currency-dollar {
+  color: black; /* Ikon currency dollar berwarna hitam */
+}
+
+.product-info .price-discount {
+  text-decoration: line-through;
+  color: #888;
+}
+
+/* Styling untuk Foto Review */
+/* Styling untuk pengguna dan rating bintang */
+.review-user {
+  display: flex;
+  flex-direction: column; /* Menyusun gambar dan bintang secara vertikal */
+  align-items: center; /* Menyelaraskan gambar dan bintang ke tengah */
+  width: 50px; /* Ukuran kontainer gambar */
+  height: 80px; /* Ukuran gambar dan ruang untuk bintang */
+  margin-right: 10px; /* Memberikan jarak antara gambar dan teks */
+}
+
+.review-user {
+  width: 50px; /* Ukuran gambar */
+  height: 50px; /* Ukuran gambar */
+  border-radius: 50%; /* Membuat gambar berbentuk lingkaran */
+  object-fit: cover; /* Memastikan gambar tidak terdistorsi */
+  margin-bottom: 8px; /* Jarak antara gambar dan bintang */
+}
+
+/* Styling untuk bintang */
+.stars {
+  display: flex;
+  justify-content: center; /* Menyelaraskan bintang ke tengah */
+  gap: 5px; /* Menambahkan jarak antara bintang */
+  font-size: 15px; /* Ukuran bintang */
+  color: #8B4513; /* Warna coklat pada bintang */
+  margin-right: 25px; /* Memberikan jarak antara gambar dan teks */
+}
+
+.review-gallery img {
+  width: 75px; /* Lebar gambar di galeri review */
+  height: 75px; /* Tinggi gambar */
+  object-fit: cover; /* Memastikan gambar proporsional */
+  margin: 5px; /* Jarak antar gambar di galeri */
+}
+
+/* Styling untuk ikon bintang dan lokasi */
+.bi-star-fill, .bi-geo-alt-fill {
+  color: #a0522d; /* Warna coklat untuk ikon bintang dan lokasi */
+}
+
+/* Mengubah ukuran font harga diskon */
+.price-discount {
+  text-decoration: line-through; /* Menambahkan garis tengah pada harga */
+  color: #888; /* Warna lebih pudar untuk harga yang diskon */
+  font-size: 14px; /* Menurunkan ukuran font harga diskon */
+}
+
+/* Styling untuk bagian deskripsi produk dan ulasan */
+.product-description {
+  margin-top: 20px;
+  font-family: 'Times New Roman', Times, serif;
+  padding: 20px;
+  border: 1px solid #ddd; /* Border untuk kotak deskripsi */
+  background-color: #f9f9f9; /* Latar belakang terang */
+  border-radius: 8px; /* Sudut melengkung */
+}
+
+.product-description h3 {
+  font-size: 22px;
+  color: #333;
+}
+
+.product-description p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Styling untuk bagian ulasan produk */
+.review {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.review-name {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Styling untuk review gallery */
+.review-gallery {
+  display: flex;
+  gap: 10px; /* Memberikan jarak antar gambar review */
+  margin-top: 10px;
+}
+
+/* Styling untuk footer dengan tombol-tombol aksi */
+.actions {
+  display: flex;
+  justify-content: space-between; /* Memberikan jarak antara grup kiri dan kanan */
+  align-items: center; /* Menyelaraskan elemen-elemen secara vertikal */
+  padding: 10px;
+  background-color: #f8f8f8;
+}
+
+/* Mengelompokkan ikon-ikon chat, keranjang, dan bagikan ke dalam grup kiri */
+.actions .action-item {
+  display: inline-flex;  /* Membuat ikon dan teks berada pada satu baris */
+  align-items: center;  /* Menyelaraskan ikon dan teks secara vertikal */
+  gap: 4px;  /* Menjaga jarak rapat antara ikon dan teks */
+  margin-right: 15px;  /* Memberikan sedikit jarak antar item */
+}
+
+/* Memberikan jarak antara ikon dan teks */
+.actions .action-item i {
+  margin-right: 0;  /* Menghapus margin antara ikon dan teks, agar keduanya lebih rapat */
+}
+
+/* Mengatur styling teks di action-item */
+.actions .action-item span {
+  font-size: 16px;  /* Menentukan ukuran teks */
+  font-weight: 500;  /* Membuat teks sedikit tebal */
+}
+
+/* Styling untuk tombol Kembali yang terletak di pojok kanan */
+.btn-back {
+  padding: 8px 20px;
+  background-color: #8b4513; /* Warna coklat */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  /* Agar tombol berada di pojok kanan */
+  margin-left: auto;  /* Memindahkan tombol ke ujung kanan */
+}
+
+.btn-back:hover {
+  background-color: #5a2a1f; /* Warna lebih gelap saat hover */
+}
+
+/* Warna untuk ikon-ikon tertentu */
+.actions .action-item .bi-chat-dots,
+.actions .action-item .bi-cart2,
+.actions .action-item .bi-send {
+  color: #8B4513;  /* Warna coklat untuk ikon */
+  font-size: 1.2rem; /* Ukuran sedikit lebih besar untuk efek bold */
+  transform: scale(1.1);  /* Memberikan efek menebalkan ikon dengan memperbesar */
+}

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>HomeCraft</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            z-index: 10;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 0.25rem;
+            overflow: hidden;
+        }
+
+        .dropdown.active {
+            display: block;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            color: black;
+            transition: background 0.2s;
+        }
+
+        .dropdown a:hover {
+            background: #f3f3f3;
+        }
+
+        .product-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin: auto;
+            border-radius: 8px;
+        }
+
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px); /* Move the product upwards */
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* Add shadow for emphasis */
+        }
+
+        .text-brown {
+            color: #8B4513;
+        }
+
+        .text-brown:hover {
+            color: bisque;
+        }
+
+        .icon-button {
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .icon-button:hover {
+            color: bisque;
+        }
+
+        .custom-banner {
+            height: 400px; /* Adjust the height as needed */
+        }
+    </style>
+
+    <script>
+        function addToCart() {
+            alert("Produk berhasil ditambahkan ke keranjang.");
+            window.location.href = 'keranjang.html';
+        }
+
+        function toggleDropdown() {
+            const dropdown = document.getElementById("profileDropdown");
+            dropdown.classList.toggle("active");
+        }
+
+        document.addEventListener("click", function (event) {
+            const dropdown = document.getElementById("profileDropdown");
+            const profileIcon = document.getElementById("profileIcon");
+            if (!dropdown.contains(event.target) && !profileIcon.contains(event.target)) {
+                dropdown.classList.remove("active");
+            }
+        });
+    </script>
+</head>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-[#8B4513] p-4 flex items-center justify-between">
+        <div class="flex items-center space-x-4">
+            <div class="text-white text-xl font-bold">HOMECRAFT</div>
+        </div>
+        <div class="flex flex-grow justify-center items-center">
+            <!-- Search Bar in the Center -->
+            <div class="relative w-full max-w-md">
+                <input type="text" placeholder="Cari barang yang anda inginkan" class="p-2 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-white">
+                <i class="fas fa-search absolute top-3 right-3 text-gray-400"></i>
+            </div>
+        </div>
+        <div class="flex items-center space-x-6 text-white">
+            <div class="relative">
+                <a href="notifikasi.html">
+                    <i class="fas fa-bell cursor-pointer"></i>
+                    <span class="absolute -top-1 -right-1 flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+                    </span>
+                </a>
+            </div>
+            
+            <a href="keranjang.html">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+            <div class="relative">
+                <i id="profileIcon" class="fas fa-user-circle cursor-pointer" onclick="toggleDropdown()"></i>
+                <div id="profileDropdown" class="dropdown bg-white text-black rounded-md">
+                    <a href="profilesaya.html">Profile Saya</a>
+                    <a href="menu.html">Pesanan Saya</a>
+                    <a href="logout.html">Keluar</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="p-4">
+        <!-- Banner Section with Carousel -->
+        <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="bg-cover bg-center custom-banner" style="background-image: url(assets/kursideh.jpeg);" role="img" aria-label="Banner 1"></div>
+                </div>
+                <div class="carousel-item">
+                    <div class="bg-cover bg-center custom-banner" style="background-image: url(assets/lemarikayu.jpeg);" role="img" aria-label="Banner 2"></div>
+                </div>
+                <div class="carousel-item">
+                    <div class="bg-cover bg-center custom-banner" style="background-image: url(assets/rakbuku.jpeg);" role="img" aria-label="Banner 3"></div>
+                </div>
+            </div>
+            <!-- Carousel controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>    
+        <!-- Product Grid for First Banner -->
+        <div class="grid grid-cols-6 gap-4 mb-4">
+            <div class="bg-white p-4 rounded shadow product-card">
+                <img
+                    src="./assets/lampu.jpg"
+                    alt="Produk 1"
+                    class="product-image mb-4"
+                />
+                <h2 class="text-lg font-bold mb-2">Lampu Hias Taman</h2>
+                <p class="text-gray-600 mb-2"><i class="fas fa-star text-yellow-400"></i> 4.5 | 890 Terjual</p>
+                <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt text-gray-600 mr-2"></i> Jakarta</p>
+                <p class="text-lg font-bold text-orange-600 mb-2">Rp 250,000</p>
+                <div class="flex flex-col space-y-4">
+                    <div class="flex justify-between items-center space-x-2">
+                        <i class="fas fa-shopping-cart icon-button text-brown" onclick="addToCart()"></i>
+                        <a href="detailproduk.html">
+                            <button class="bg-[#8B4513] text-white py-2 px-4 text-sm rounded-md hover:bg-bisque focus:outline-none">
+                                Lihat Detail Produk
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="bg-white p-4 rounded shadow product-card">
+                <img
+                    src="./assets/lacikecil.jpg"
+                    alt="Produk 2"
+                    class="product-image mb-4"
+                />
+                <h2 class="text-lg font-bold mb-2">Laci Hias</h2>
+                <p class="text-gray-600 mb-2"><i class="fas fa-star text-yellow-400"></i> 4.8 | 230 Terjual</p>
+                <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt text-gray-600 mr-2"></i> Bandung</p>
+                <p class="text-lg font-bold text-orange-600 mb-2">Rp 200,000</p>
+                <div class="flex flex-col space-y-4">
+                    <div class="flex justify-between items-center space-x-2">
+                        <i class="fas fa-shopping-cart icon-button text-brown" onclick="addToCart()"></i>
+                        <a href="detailproduk.html">
+                            <button class="bg-[#8B4513] text-white py-2 px-4 text-sm rounded-md hover:bg-bisque focus:outline-none">
+                                Lihat Detail Produk
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded shadow product-card">
+                <img
+                    src="./assets/lemari.jpg"
+                    alt="Produk 3"
+                    class="product-image mb-4"
+                />
+                <h2 class="text-lg font-bold mb-2">Lemari Putih Polos</h2>
+                <p class="text-gray-600 mb-2"><i class="fas fa-star text-yellow-400"></i> 4.7 | 150 Terjual</p>
+                <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt text-gray-600 mr-2"></i> Surabaya</p>
+                <p class="text-lg font-bold text-orange-600 mb-2">Rp 180,000</p>
+                <div class="flex flex-col space-y-4">
+                    <div class="flex justify-between items-center space-x-2">
+                        <i class="fas fa-shopping-cart icon-button text-brown" onclick="addToCart()"></i>
+                        <a href="detailproduk.html">
+                            <button class="bg-[#8B4513] text-white py-2 px-4 text-sm rounded-md hover:bg-bisque focus:outline-none">
+                                Lihat Detail Produk
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded shadow product-card">
+                <img
+                    src="./assets/mejakursi.jpg"
+                    alt="Produk 4"
+                    class="product-image mb-4"
+                />
+                <h2 class="text-lg font-bold mb-2">1 Set</h2>
+                <p class="text-gray-600 mb-2"><i class="fas fa-star text-yellow-400"></i> 4.9 | 310 Terjual</p>
+                <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt text-gray-600 mr-2"></i> Yogyakarta</p>
+                <p class="text-lg font-bold text-orange-600 mb-2">Rp 1.600.000</p>
+                <div class="flex flex-col space-y-4">
+                    <div class="flex justify-between items-center space-x-2">
+                        <i class="fas fa-shopping-cart icon-button text-brown" onclick="addToCart()"></i>
+                        <a href="detailproduk.html">
+                            <button class="bg-[#8B4513] text-white py-2 px-4 text-sm rounded-md hover:bg-bisque focus:outline-none">
+                                Lihat Detail Produk
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded shadow product-card">
+                <img
+                    src="./assets/mejapendek.jpg"
+                    alt="Produk 5"
+                    class="product-image mb-4"
+                />
+                <h2 class="text-lg font-bold mb-2">Meja Tamu</h2>
+                <p class="text-gray-600 mb-2"><i class="fas fa-star text-yellow-400"></i> 4.6 | 180 Terjual</p>
+                <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt text-gray-600 mr-2"></i> Bali</p>
+                <p class="text-lg font-bold text-orange-600 mb-2">Rp 170,000</p>
+                <div class="flex flex-col space-y-4">
+                    <div class="flex justify-between items-center space-x-2">
+                        <i class="fas fa-shopping-cart icon-button text-brown" onclick="addToCart()"></i>
+                        <a href="detailproduk.html">
+                            <button class="bg-[#8B4513] text-white py-2 px-4 text-sm rounded-md hover:bg-bisque focus:outline-none">
+                                Lihat Detail Produk
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded shadow product-card">
+                <img
+                    src="./assets/rak.jpg"
+                    alt="Produk 5"
+                    class="product-image mb-4"
+                />
+                <h2 class="text-lg font-bold mb-2">Rak Pajangan</h2>
+                <p class="text-gray-600 mb-2"><i class="fas fa-star text-yellow-400"></i> 4.6 | 180 Terjual</p>
+                <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt text-gray-600 mr-2"></i> Bali</p>
+                <p class="text-lg font-bold text-orange-600 mb-2">Rp 170,000</p>
+                <div class="flex flex-col space-y-4">
+                    <div class="flex justify-between items-center space-x-2">
+                        <i class="fas fa-shopping-cart icon-button text-brown" onclick="addToCart()"></i>
+                        <a href="detailproduk.html">
+                            <button class="bg-[#8B4513] text-white py-2 px-4 text-sm rounded-md hover:bg-bisque focus:outline-none">
+                                Lihat Detail Produk
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Banner -->
+        <div
+            class="bg-cover bg-center h-24 mb-4"
+            style="background-image: url('./assets/kayu1.jpg');"
+            role="img"
+            aria-label="Banner"
+        ></div>
+
+        <!-- Product Grid for Second Banner -->
+        <div class="grid grid-cols-6 gap-4 mb-4">
+            <div class="bg-white p-4 rounded shadow">
+                <img
+                    src="./assets/meja dapur.webp"
+                    alt="Produk 1"
+                    class="product-image mb-4"
+                />
+                <h2 class="text-lg font-bold mb-2">meja dapur</h2>
+                <p class="text-gray-600 mb-2"><i class="fas fa-star text-yellow-400"></i> 5.0 | 43 Terjual</p>
+                <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt text-gray-600 mr-2"></i> Bandung</p>
+                <p class="text-lg font-bold text-orange-600 mb-2">Rp 1.250.000</p>
+                <div class="flex flex-col space-y-4">
+                    <div class="flex justify-between items-center space-x-2">
+                        <i class="fas fa-shopping-cart icon-button text-brown" onclick="addToCart()"></i>
+                        <a href="detailproduk.html">
+                            <button class="bg-[#8B4513] text-white py-2 px-4 text-sm rounded-md hover:bg-bisque focus:outline-none">
+                                Lihat Detail Produk
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded shadow">
+                <img
+                    src="./assets/kotak tissu.jpg"
+                    alt="Produk 2"
+                    class="product-image mb-4"
+                />
+                <h2 class="text-lg font-bold mb-2">kotak tissu</h2>
+                <p class="text-gray-600 mb-2"><i class="fas fa-star text-yellow-400"></i> 3.9 | 1000 Terjual</p>
+                <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt text-gray-600 mr-2"></i> Cirebon</p>
+                <p class="text-lg font-bold text-orange-600 mb-2">Rp 50.000</p>
+                <div class="flex flex-col space-y-4">
+                    <div class="flex justify-between items-center space-x-2">
+                        <i class="fas fa-shopping-cart icon-button text-brown" onclick="addToCart()"></i>
+                        <a href="detailproduk.html">
+                            <button class="bg-[#8B4513] text-white py-2 px-4 text-sm rounded-md hover:bg-bisque focus:outline-none">
+                                Lihat Detail Produk
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded shadow">
+                <img
+                    src="./assets/kursi jati.jpeg"
+                    alt="Produk 3"
+                    class="product-image mb-4"
+                />
+                <h2 class="text-lg font-bold mb-2">kursi jati</h2>
+                <p class="text-gray-600 mb-2"><i class="fas fa-star text-yellow-400"></i> 4.7 | 150 Terjual</p>
+                <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt text-gray-600 mr-2"></i> Bandung</p>
+                <p class="text-lg font-bold text-orange-600 mb-2">Rp 180.000</p>
+                <div class="flex flex-col space-y-4">
+                    <div class="flex justify-between items-center space-x-2">
+                        <i class="fas fa-shopping-cart icon-button text-brown" onclick="addToCart()"></i>
+                        <a href="detailproduk.html">
+                            <button class="bg-[#8B4513] text-white py-2 px-4 text-sm rounded-md hover:bg-bisque focus:outline-none">
+                                Lihat Detail Produk
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded shadow">
+                <img
+                    src="./assets/frame lukisam.jpg"
+                    alt="Produk 4"
+                    class="product-image mb-4"
+                />
+                <h2 class="text-lg font-bold mb-2">Frame Lukisan</h2>
+                <p class="text-gray-600 mb-2"><i class="fas fa-star text-yellow-400"></i> 4.9 | 310 Terjual</p>
+                <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt text-gray-600 mr-2"></i> Medan</p>
+                <p class="text-lg font-bold text-orange-600 mb-2">Rp 300.000</p>
+                <div class="flex flex-col space-y-4">
+                    <div class="flex justify-between items-center space-x-2">
+                        <i class="fas fa-shopping-cart icon-button text-brown" onclick="addToCart()"></i>
+                        <a href="detailproduk.html">
+                            <button class="bg-[#8B4513] text-white py-2 px-4 text-sm rounded-md hover:bg-bisque focus:outline-none">
+                                Lihat Detail Produk
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded shadow">
+                <img
+                    src="./assets/meja hitam.webp"
+                    alt="Produk 5"
+                    class="product-image mb-4"
+                />
+                <h2 class="text-lg font-bold mb-2">Meja hitam</h2>
+                <p class="text-gray-600 mb-2"><i class="fas fa-star text-yellow-400"></i> 4.6 | 180 Terjual</p>
+                <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt text-gray-600 mr-2"></i> Bali</p>
+                <p class="text-lg font-bold text-orange-600 mb-2">Rp 170,000</p>
+                <div class="flex flex-col space-y-4">
+                    <div class="flex justify-between items-center space-x-2">
+                        <i class="fas fa-shopping-cart icon-button text-brown" onclick="addToCart()"></i>
+                        <a href="detailproduk.html">
+                            <button class="bg-[#8B4513] text-white py-2 px-4 text-sm rounded-md hover:bg-bisque focus:outline-none">
+                                Lihat Detail Produk
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded shadow">
+                <img
+                    src="./assets/rak gantung.jpg"
+                    alt="Produk 5"
+                    class="product-image mb-4"
+                />
+                <h2 class="text-lg font-bold mb-2">Rak gantung</h2>
+                <p class="text-gray-600 mb-2"><i class="fas fa-star text-yellow-400"></i> 4.6 | 180 Terjual</p>
+                <p class="text-gray-600 mb-2"><i class="fas fa-map-marker-alt text-gray-600 mr-2"></i> Bali</p>
+                <p class="text-lg font-bold text-orange-600 mb-2">Rp 170,000</p>
+                <div class="flex flex-col space-y-4">
+                    <div class="flex justify-between items-center space-x-2">
+                        <i class="fas fa-shopping-cart icon-button text-brown" onclick="addToCart()"></i>
+                        <a href="detailproduk.html">
+                            <button class="bg-[#8B4513] text-white py-2 px-4 text-sm rounded-md hover:bg-bisque focus:outline-none">
+                                Lihat Detail Produk
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
